@@ -12,6 +12,7 @@ class ButtonFactory {
 
     var btnArr: [SKSpriteNode]!
     
+    let single: String!
     static var btnFactory: ButtonFactory!
     class func getInstance() -> ButtonFactory {
         if let instance = btnFactory {
@@ -23,6 +24,7 @@ class ButtonFactory {
     }
     
     init(){
+        self.single = "the single model"
         btnArr = []
         initBtnArr()
     }
@@ -40,15 +42,15 @@ class ButtonFactory {
             shape.strokeColor = BUTTON_LINE_COLOR
             shape.fillColor = BUTTON_FILL_COLOR
             shape.lineWidth = BUTTON_LINE_WIDTH
-            shape.name = "button\(i)"
+            shape.name = "\(BUTTON_NAME)\(i)"
             // button ico
             shape.fillTexture = SKTexture(imageNamed: "btn\(i).jpg")
             node.addChild(shape)
             // position
             if i < 4 {
-                node.position = CGPointMake((SCENE_SIZE.width - BUTTON_WIDTH * 4) / 5 * (CGFloat(i) + 1) + CGFloat(i) * BUTTON_WIDTH, MID_BOX_HEIGHT / 2.5)
+                node.position = CGPointMake((SCENE_SIZE.width - BUTTON_WIDTH * 4) / 5 * (CGFloat(i) + 1) + CGFloat(i) * BUTTON_WIDTH, BTM_BOX_HEIGHT / 1.8)
             }else{
-                node.position = CGPointMake((SCENE_SIZE.width - BUTTON_WIDTH * 4) / 5 * (CGFloat(i) - 3) + (CGFloat(i) - 4) * BUTTON_WIDTH, MID_BOX_HEIGHT / 7.5)
+                node.position = CGPointMake((SCENE_SIZE.width - BUTTON_WIDTH * 4) / 5 * (CGFloat(i) - 3) + (CGFloat(i) - 4) * BUTTON_WIDTH, BTM_BOX_HEIGHT / 7.5)
             }
             self.btnArr.append(node)
             

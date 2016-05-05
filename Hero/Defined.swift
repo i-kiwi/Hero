@@ -10,56 +10,136 @@
 import SpriteKit
 
 
-//Size
+/**
+ * Size
+ */
 let SCENE_SIZE: CGSize = CGSizeMake(1080, 1920)
 
 
 
-//Width
+/**
+ * Width
+ */
 let BOX_LINE_WIDTH:CGFloat = 5
 let BOX_LINE_MARGIN:CGFloat = 15
-let TOP_BOX_HEIGHT:CGFloat = 150
-let MID_BOX_HEIGHT:CGFloat = 1040
-let BTM_BOX_HEIGHT:CGFloat = 700
 
+let TOP_BOX_HEIGHT:CGFloat = 150
+let MID_BOX_HEIGHT:CGFloat = 1140
+let BTM_BOX_HEIGHT:CGFloat = 600
 
 let BUTTON_LINE_WIDTH:CGFloat = 5
-let BUTTON_WIDTH:CGFloat = 200
-let BUTTON_HEIGHT:CGFloat = 190
+let BUTTON_WIDTH:CGFloat = 180
+let BUTTON_HEIGHT:CGFloat = 180
+
+// container
+let FRAME_MARGIN:CGFloat = 90
+let TOP_FRAME_HEIGHT: CGFloat = 220
+let BOTTOM_FRAME_HEIGHT: CGFloat = 660
+let BIG_FRAME_HEIGHT: CGFloat = 970
+let FRAME_LINE_WIDTH:CGFloat = 5
+// content
+let CONTENT_MODEL_MARGIN: CGFloat = 50
+let MAKING_CONTENT_MODEL_HEIGHT: CGFloat = 200
+let MAP_CONTENT_MODEL_HEIGHT: CGFloat = 280
+let CONTENT_MODEL_WIDTH: CGFloat = SCENE_SIZE.width - FRAME_MARGIN * 2 - CONTENT_MODEL_MARGIN * 2 - 5
+// list
+let LIST_ICO_NODE_WIDTH: CGFloat = 150
+let LIST_ICO_NODE_LINE_WIDTH: CGFloat = 5
+// 内容列表滑动范围
+let LIST_SLIDE_RANGE: CGFloat = 200
+// 内容列表顶部距离手机底部的距离
+let MAKING_LIST_ABSOLUTED_HEIGHT: CGFloat = BTM_BOX_HEIGHT + BOTTOM_FRAME_HEIGHT + FRAME_MARGIN * 2
+let MAP_LIST_ABSOLUTED_HEIGHT: CGFloat = BTM_BOX_HEIGHT + BIG_FRAME_HEIGHT + FRAME_MARGIN * 2
 
 
 
-
-//Radius
+/**
+ * Radius
+ */
+let HOME_BOX_RADIUS: CGFloat = 10
 let BUTTON_RADIUS: CGFloat = 50
 
+let FRAME_RADIUS: CGFloat = 50
 
 
-// ZPosition
+
+/**
+ * ZPosition
+ */
+
+// hero
 let BODY_ZPOSITION: CGFloat = 100
 let LEG_ZPOSITION: CGFloat = -1
 let ARM_ZPOSITION: CGFloat = 99
 let EYE_ZPOSITION: CGFloat = 99
+
+// box
 let BOX_ZPOSITION: CGFloat = 1
 let BOX_LINE_ZPOSITION: CGFloat = 5
 let BUTTON_ZPOSITION:CGFloat = 5
 
+//making box
+let CONTAINER_BOX_ZPOSITION:CGFloat = 10
+let CONTAINER_BOX_LINE_ZPOSITION:CGFloat = 12
+let FRAME_ZPOSITION: CGFloat = 14
+let CONTENT_ZPOSITION: CGFloat = 16
+let FRAME_LINE_ZPOSITION: CGFloat = 18
 
-// Speed
+//state box
+let EQUIP_ZPOSITION:CGFloat = 14
+
+/**
+ * Speed
+ */
 let SLOW_RUN_SPEED: CGFloat = 0.5
 
 
 
-//Color
+/**
+ * Color
+ */
 let BOX_LINE_COLOR = UIColor.blackColor()
 let BOX_LINE_FILL_COLOR = UIColor.whiteColor()
 
 let BUTTON_LINE_COLOR = UIColor.blackColor()
 let BUTTON_FILL_COLOR = UIColor.whiteColor()
 
+let CONTAINER_BOX_LINE_COLOR = UIColor.blackColor()
+let CONTAINER_BOX_FILL_COLOR = UIColor.whiteColor()
+
+let FRAME_LINE_COLOR = UIColor.blackColor()
+let FRAME_FILL_COLOR = UIColor.whiteColor()
+
+let LIST_ICO_NODE_COLOR = UIColor.grayColor()
 
 
-//Button enum
+
+/**
+ * name
+ */
+let BUTTON_NAME = "button"
+let GOODS_ICO_NAME = "goodsIcoName-"
+let PLACE_ICO_NAME = "placeIcoName-"
+
+// making
+let MAKING_TAINER_NAME = "makingTainer"
+// map
+let MAP_TAINER_NAME = "mapTainer"
+// font family
+let FONT_FAMILY_BOLD_NAME = "Courier-Bold"
+let FONT_FAMILY_NAME = "Courier"
+
+// 装备栏名称
+//剑
+let SWORD_EQUIP_NAME = "swordEquip"
+//枪
+let GUN_EQUIP_NAME = "gunEquip"
+
+
+
+/**
+ * Button enum
+ */
 enum buttonIndexEnum: Int {
     case 个人 = 0
     case 图册 = 1
@@ -70,3 +150,4 @@ enum buttonIndexEnum: Int {
     case 部落 = 6
     case 掠夺 = 7
 }
+

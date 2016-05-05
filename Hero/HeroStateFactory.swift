@@ -10,6 +10,7 @@ import SpriteKit
 
 class HeroStateFactory: SKSpriteNode {
     
+    let single: String!
     static var instance: HeroStateFactory!
     class func getInstance() -> HeroStateFactory {
         if let factory = instance {
@@ -21,6 +22,7 @@ class HeroStateFactory: SKSpriteNode {
     }
     
     init(){
+        self.single = "the single model"
         let texture = SKTexture(imageNamed: "body2")
         let size = CGSizeMake(texture.size().width, texture.size().height)
         super.init(texture: texture, color: UIColor.whiteColor(), size: size)

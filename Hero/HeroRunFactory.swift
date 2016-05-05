@@ -16,6 +16,7 @@ class HeroRunFactory: SKSpriteNode {
     var leftEye: SKSpriteNode!
     var rightEye: SKSpriteNode!
     
+    let single: String!
     static var instance: HeroRunFactory!
     class func getInstance() -> HeroRunFactory{
         if let factory = instance{
@@ -27,6 +28,7 @@ class HeroRunFactory: SKSpriteNode {
     }
 
     init(){
+        self.single = "the single model"
         let texture = SKTexture(imageNamed: "body")
         let size = CGSizeMake(texture.size().width, texture.size().height)
         super.init(texture:texture,color:SKColor.whiteColor(),size:size)
@@ -135,9 +137,10 @@ class HeroRunFactory: SKSpriteNode {
     func getArm() -> SKSpriteNode {
         let arm = SKSpriteNode(color: UIColor.blackColor(), size: CGSizeMake(3, 20))
         arm.anchorPoint = CGPointMake(0.5, 1)
-        arm.zPosition = LEG_ZPOSITION
+        arm.zPosition = ARM_ZPOSITION
         return arm
     }
+    
     func startArmAction(){
         self.arm.zRotation = -0.5
         let runAction1 = SKAction.rotateByAngle(CGFloat(M_PI_2), duration: 0.2)
