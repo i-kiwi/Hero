@@ -73,3 +73,17 @@ class Goods{
         
     }
 }
+
+
+// 食物
+class Food: Goods {
+    
+}
+// 武器
+class arms: Goods {
+    
+}
+// 材料
+class stuff: Goods {
+    
+}

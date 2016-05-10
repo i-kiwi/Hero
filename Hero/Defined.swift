@@ -50,8 +50,10 @@ let LIST_SLIDE_RANGE: CGFloat = 200
 // 内容列表顶部距离手机底部的距离
 let MAKING_LIST_ABSOLUTED_HEIGHT: CGFloat = BTM_BOX_HEIGHT + BOTTOM_FRAME_HEIGHT + FRAME_MARGIN * 2
 let MAP_LIST_ABSOLUTED_HEIGHT: CGFloat = BTM_BOX_HEIGHT + BIG_FRAME_HEIGHT + FRAME_MARGIN * 2
-
-
+// 背包
+let PACK_GOODS_FRAME_WIDTH: CGFloat = 150
+let PACK_GOODS_FRAME_MARGIN: CGFloat = 10
+let PACK_GOODS_ROW_SIZE: CGFloat = 5
 
 /**
  * Radius
@@ -88,6 +90,9 @@ let FRAME_LINE_ZPOSITION: CGFloat = 18
 //state box
 let EQUIP_ZPOSITION:CGFloat = 14
 
+// pack box
+let GOODS_FRAME_ZPOSITION:CGFloat = 20
+
 /**
  * Speed
  */
@@ -120,11 +125,15 @@ let LIST_ICO_NODE_COLOR = UIColor.grayColor()
 let BUTTON_NAME = "button"
 let GOODS_ICO_NAME = "goodsIcoName-"
 let PLACE_ICO_NAME = "placeIcoName-"
+let SHAPE_NAME = "shape"
 
 // making
 let MAKING_TAINER_NAME = "makingTainer"
 // map
 let MAP_TAINER_NAME = "mapTainer"
+// pack
+let PACK_TAINER_NAME = "packTainer"
+let PACK_GOODS_NAME = "packGoods-"
 // font family
 let FONT_FAMILY_BOLD_NAME = "Courier-Bold"
 let FONT_FAMILY_NAME = "Courier"
@@ -146,7 +155,7 @@ enum buttonIndexEnum: Int {
     case 探索 = 2
     case 制造 = 3
     case 商店 = 4
-    case 物品 = 5
+    case 背包 = 5
     case 部落 = 6
     case 掠夺 = 7
 }

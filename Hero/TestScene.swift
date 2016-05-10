@@ -70,12 +70,14 @@ class TestScene: SKScene {
 //        UIGraphicsBeginImageContext((self.view?.bounds.size)!)
 //        let gc = UIGraphicsGetCurrentContext()
 //        
-        let transform = CGAffineTransformMakeTranslation(0, -100)
+        
+        
+        let transform = CGAffineTransformMakeTranslation(0, 0)
         let path = CGPathCreateMutable()
         let point0 = CGPointMake(0, 0)
-        let point1 = CGPointMake(100, 100)
-        let point2 = CGPointMake(0, 200)
-        let point3 = CGPointMake(-100, 100)
+        let point1 = CGPointMake(150, 0)
+        let point2 = CGPointMake(150, 150)
+        let point3 = CGPointMake(0, 150)
         let point4 = CGPointMake(0, 0)
         CGPathAddLines(path, [transform], [point0,point1,point2,point3,point4], 5)
         

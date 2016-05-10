@@ -19,6 +19,8 @@ class Role: NSObject {
     var hasGoods: [Goods]!
     // 穿戴的物品
     var wearingGoods: NSMutableDictionary!
+    // 物品数量上限
+    var goodsCountUpperLimit: Int!
     // 图册
     var placeMap: [Place]!
     
@@ -43,6 +45,8 @@ class Role: NSObject {
         self.level = 1
         self.entitledGoods = []
         self.hasGoods = []
+        self.goodsCountUpperLimit = 50
+        
         self.wearingGoods = NSMutableDictionary()
         self.placeMap = []
 //        self.goodsVerson = "0.1"
@@ -52,7 +56,7 @@ class Role: NSObject {
         
         //测试物品数据
         for index in 0 ..< 20{
-            let goods = Goods()
+            let goods = Food()
             goods.name = "初级红药水"
             goods.ico = SKTexture(imageNamed: "btn\(index % 8).jpg")
             goods.attribute = "+20生命值"

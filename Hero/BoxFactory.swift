@@ -119,7 +119,7 @@ class BoxFactory {
         shape.lineWidth = BOX_LINE_WIDTH
 //        shape.fillColor = CONTAINER_BOX_FILL_COLOR
         shape.zPosition = CONTAINER_BOX_LINE_ZPOSITION
-        
+        shape.name = SHAPE_NAME
         containerBox.size = shape.frame.size
         containerBox.zPosition = CONTAINER_BOX_ZPOSITION
         containerBox.addChild(shape)

@@ -26,6 +26,8 @@ class Home: SKScene {
     var state:State!
     // 地图
     var map: Map!
+    // 背包
+    var pack: Pack!
     // 手指点击或滑动时的Y轴
     var touchYPoint: CGFloat = 0
     // 手机滑动的增量
@@ -119,6 +121,12 @@ class Home: SKScene {
                         self.showMapView()
                         self.currentButtonName = name
                     }
+                }else if name == "\(BUTTON_NAME)\(buttonIndexEnum.背包.rawValue)" {
+                    if name != self.currentButtonName{
+                        self.changeViewAction()
+                        self.showPackView()
+                        self.currentButtonName = name
+                    }
                 }
             }
         }
@@ -183,6 +191,13 @@ class Home: SKScene {
         self.boxFactory.midBox.removeAllChildren()
         self.boxFactory.midBox.addChild(mapBox)
     }
+    // 背包窗口
+    func showPackView(){
+        self.pack = Pack.getInstance()
+        let packBox = pack.packBox
+        self.boxFactory.midBox.removeAllChildren()
+        self.boxFactory.midBox.addChild(packBox)
+    }
     
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -218,6 +233,17 @@ class Home: SKScene {
                     }
                     
                 }
+            }else if self.currentButtonName == "\(BUTTON_NAME)\(buttonIndexEnum.背包.rawValue)" && MathUtil.isInRange(touch?.y, range: (BTM_BOX_HEIGHT,MAP_LIST_ABSOLUTED_HEIGHT)){
+                if node.name == PACK_TAINER_NAME{
+                    if let packTainer = node.parent as? SKShapeNode{
+                        if packTainer.position.y > self.pack.listRange.top - LIST_SLIDE_RANGE && packTainer.position.y < self.pack.listRange.btm + LIST_SLIDE_RANGE{
+                            addMove()
+                            self.pack.tainer.removeAllActions()
+                            packTainer.position.y += moveLength
+                        }
+                    }
+                    
+                }
             }
             
         }
@@ -231,6 +257,8 @@ class Home: SKScene {
             self.making.bottomFrameTurnZero(self.moveLength)
         }else if self.currentButtonName == "\(BUTTON_NAME)\(buttonIndexEnum.图册.rawValue)"{
             self.map.bottomFrameTurnZero(self.moveLength)
+        }else if self.currentButtonName == "\(BUTTON_NAME)\(buttonIndexEnum.背包.rawValue)"{
+            self.pack.bottomFrameTurnZero(self.moveLength)
         }
         
         
