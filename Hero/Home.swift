@@ -13,7 +13,7 @@ class Home: SKScene {
     // 角色
     let role = Role.getInstance()
     // curren button name
-    var currentButtonName:String = ""
+    var currentButtonName:NSString = ""
     // hero texture
     var hero: HeroStateFactory!
     // every box
@@ -32,6 +32,10 @@ class Home: SKScene {
     var touchYPoint: CGFloat = 0
     // 手机滑动的增量
     var moveLength: CGFloat = 0
+    // 上次点击的button按钮节点
+    var lastBtnNode:SKShapeNode!
+    // 上次点击的button的下标
+    var lastBtnIndex:String!
     
     
     override func didMoveToView(view: SKView) {
@@ -127,6 +131,18 @@ class Home: SKScene {
                         self.showPackView()
                         self.currentButtonName = name
                     }
+                }
+                
+                // 点击按钮更换背景图片，并恢复上次点击的背景图片
+                if let node = node as? SKShapeNode{
+                    if let _ = self.lastBtnNode {
+                        self.lastBtnNode.fillTexture = SKTexture(imageNamed: "btn\(self.lastBtnIndex)_0.png")
+                        self.lastBtnNode.strokeColor = UIColor.blackColor()
+                    }
+                    self.lastBtnIndex = self.currentButtonName.substringFromIndex(6)
+                    node.fillTexture = SKTexture(imageNamed: "btn\(self.lastBtnIndex)_1.png")
+                    node.strokeColor = UIColor.whiteColor()
+                    self.lastBtnNode = node
                 }
             }
         }

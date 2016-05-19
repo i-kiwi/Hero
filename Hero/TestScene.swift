@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class TestScene: SKScene {
+class TestScene: SKScene{
 
     override func didMoveToView(view: SKView) {
         
@@ -72,23 +72,97 @@ class TestScene: SKScene {
 //        
         
         
-        let transform = CGAffineTransformMakeTranslation(0, 0)
-        let path = CGPathCreateMutable()
-        let point0 = CGPointMake(0, 0)
-        let point1 = CGPointMake(150, 0)
-        let point2 = CGPointMake(150, 150)
-        let point3 = CGPointMake(0, 150)
-        let point4 = CGPointMake(0, 0)
-        CGPathAddLines(path, [transform], [point0,point1,point2,point3,point4], 5)
+//        let transform = CGAffineTransformMakeTranslation(0, 0)
+//        let path = CGPathCreateMutable()
+//        let point0 = CGPointMake(0, 0)
+//        let point1 = CGPointMake(150, 0)
+//        let point2 = CGPointMake(150, 150)
+//        let point3 = CGPointMake(0, 150)
+//        let point4 = CGPointMake(0, 0)
+//        CGPathAddLines(path, [transform], [point0,point1,point2,point3,point4], 5)
+//        
+//        let hexagon = SKShapeNode(path: path)
+//        hexagon.strokeColor = UIColor.blackColor()
+//        hexagon.fillColor = UIColor.whiteColor()
+//        hexagon.lineWidth = 5
+//
+//        
+//        self.addChild(hexagon)
+//        let myLayer = CALayer()
+//        myLayer.frame = CGRect(x: 10, y: 200, width: 100, height: 100)
+////        myLayer.backgroundColor = UIColor.redColor().CGColor
+//        hexagon.layoutSublayersOfLayer(myLayer)
         
-        let hexagon = SKShapeNode(path: path)
-        hexagon.strokeColor = UIColor.blackColor()
-        hexagon.fillColor = UIColor.whiteColor()
-        hexagon.lineWidth = 5
+        
+//        let messageBox = SKSpriteNode(color: UIColor.lightGrayColor(), size: CGSizeMake(400, 250))
+//        messageBox.anchorPoint = CGPointMake(0.5, 40 / 250 + 1)
+//        messageBox.position = CGPointMake(0, 0)
+//        
+//        
+//        let transform = CGAffineTransformMakeTranslation(0, -40)
+//        let path = CGPathCreateMutable()
+//        let point0 = CGPointMake(40, 0
+//        let point1 = CGPointMake(0, 40)
+//        let point2 = CGPointMake(-40, 0)
+//        CGPathAddLines(path, [transform], [point0,point1,point2], 3)
+//        let triangle = SKShapeNode(path: path)
+//        triangle.strokeColor = UIColor.blackColor()
+//        triangle.fillColor = UIColor.whiteColor()
+//        triangle.lineWidth = 5
+//        
+//        messageBox.addChild(triangle)
+//        
+//        
+//        self.addChild(messageBox)
+//        
+//        messageBox.anchorPoint.x = 0.7
+//        messageBox.yScale = -messageBox.yScale
         
         
-        self.addChild(hexagon)
+//        conn()
+        
         
     }
     
+    // 网路连接
+    func conn(){
+        let url = NSURL(string: "http://116.58.222.165/CXB_TASK/runner/redis.do?key=person_day_rank&field=1")
+        if let data = NSData(contentsOfURL: url!){
+            do{
+                let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
+                let groupName = json.valueForKey("groupName")
+                
+                print("\(groupName)")
+            }catch{
+                print("error")
+            }
+        }
+    
+//        let request = NSURLRequest(URL: url!)
+//        
+//        let session = NSURLSession.sharedSession()
+//        let task = session.dataTaskWithRequest(request) { (data, response, error) in
+//            print("\(response?.textEncodingName)")
+//            
+////            print("\(data)")
+////            print("\(response)")
+////            print("\(error)")
+////            NSString *aString = [[NSString alloc] initWithData:adata encoding:NSUTF8StringEncoding]
+//            let result = NSString(data: data!, encoding: NSUTF8StringEncoding)
+//            print("\(result)")
+//            do{
+//                
+//                let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
+//                
+//                print("\(json)")
+//                
+//            }catch{
+//                print("error")
+//            }
+//        }
+//        task.resume()
+    }
+    
 }
+
+

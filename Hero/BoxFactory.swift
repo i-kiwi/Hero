@@ -69,9 +69,10 @@ class BoxFactory {
         // top box line
         let topBoxLine = SKShapeNode(rect: CGRectMake(BOX_LINE_MARGIN, BOX_LINE_MARGIN, topBox.frame.width - BOX_LINE_MARGIN * 2 , topBox.frame.height - BOX_LINE_MARGIN * 2), cornerRadius: 10)
         topBoxLine.strokeColor = BOX_LINE_COLOR
-//        topBoxLine.fillColor = BOX_LINE_FILL_COLOR
+        topBoxLine.fillColor = BOX_LINE_FILL_COLOR
         topBoxLine.lineWidth = BOX_LINE_WIDTH
         topBoxLine.zPosition = BOX_LINE_ZPOSITION
+        topBoxLine.fillTexture = SKTexture(imageNamed: "alpha6.png")
         topBox.addChild(topBoxLine)
         
         
@@ -102,9 +103,10 @@ class BoxFactory {
         // bottom box line
         let btmBoxLine = SKShapeNode(rect: CGRectMake(BOX_LINE_MARGIN, BOX_LINE_MARGIN, btmBox.frame.width - BOX_LINE_MARGIN * 2, btmBox.frame.height - BOX_LINE_MARGIN * 2), cornerRadius: 10)
         btmBoxLine.strokeColor = BOX_LINE_COLOR
-//        btmBoxLine.fillColor = BOX_LINE_FILL_COLOR
+        btmBoxLine.fillColor = BOX_LINE_FILL_COLOR
         btmBoxLine.lineWidth = BOX_LINE_WIDTH
         btmBoxLine.zPosition = BOX_LINE_ZPOSITION
+        btmBoxLine.fillTexture = SKTexture(imageNamed: "alpha6.png")
         btmBox.addChild(btmBoxLine)
     }
     
@@ -245,8 +247,28 @@ class BoxFactory {
         return hexagon
     }
     
-    
-    
+    // 获取消息框
+    func getMessageBox(xAnchorPoint: CGFloat, direction: CGFloat) -> SKSpriteNode{
+        let messageBox = SKSpriteNode(color: UIColor.lightGrayColor(), size: CGSizeMake(400, 250))
+        messageBox.anchorPoint = CGPointMake(xAnchorPoint, 40 / 250 + 1)
+        messageBox.position = CGPointMake(0, 0)
+        messageBox.yScale = direction
+        
+        let transform = CGAffineTransformMakeTranslation(0, -40)
+        let path = CGPathCreateMutable()
+        let point0 = CGPointMake(40, 0)
+        let point1 = CGPointMake(0, 40)
+        let point2 = CGPointMake(-40, 0)
+        CGPathAddLines(path, [transform], [point0,point1,point2], 3)
+        let triangle = SKShapeNode(path: path)
+        triangle.strokeColor = UIColor.blackColor()
+        triangle.fillColor = UIColor.whiteColor()
+        triangle.lineWidth = 5
+        
+        messageBox.addChild(triangle)
+        
+        return messageBox
+    }
     
     
     

@@ -91,8 +91,8 @@ class HeroRunFactory: SKSpriteNode {
     func stopEyeAction(){
         self.leftEye.removeAllActions()
         self.rightEye.removeAllActions()
-        self.leftEye.position = CGPointMake(10, 14)
-        self.rightEye.position = CGPointMake(35, 14)
+        self.leftEye.position = CGPointMake(10, 10)
+        self.rightEye.position = CGPointMake(35, 10)
     }
     /** -------------------------------------------EYE END---------------------------------------------- */
 
@@ -116,8 +116,8 @@ class HeroRunFactory: SKSpriteNode {
     func stopLegAction(){
         self.leftLeg.removeAllActions()
         self.rightLeg.removeAllActions()
-        self.leftLeg.position = CGPointMake(-4, -58)
-        self.rightLeg.position = CGPointMake(8, -58)
+        self.leftLeg.position = CGPointMake(-4, -52)
+        self.rightLeg.position = CGPointMake(8, -52)
         self.leftLeg.zRotation = 0
         self.rightLeg.zRotation = 0
     }

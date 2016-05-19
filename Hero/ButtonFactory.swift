@@ -44,7 +44,7 @@ class ButtonFactory {
             shape.lineWidth = BUTTON_LINE_WIDTH
             shape.name = "\(BUTTON_NAME)\(i)"
             // button ico
-            shape.fillTexture = SKTexture(imageNamed: "btn\(i).jpg")
+            shape.fillTexture = SKTexture(imageNamed: "btn\(i)_0.png")
             node.addChild(shape)
             // position
             if i < 4 {
