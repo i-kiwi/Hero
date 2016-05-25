@@ -23,7 +23,7 @@ class Place {
     func addToListContent(sprite: SKSpriteNode, index: Int){
         // index
         let indexLabel = SKLabelNode(fontNamed: FONT_FAMILY_BOLD_NAME)
-        indexLabel.fontColor = UIColor.blackColor()
+        indexLabel.fontColor = UIColor.whiteColor()
         indexLabel.text = "\(index + 1)"
         indexLabel.fontSize = 40
         indexLabel.position = CGPointMake(20, -60)

@@ -73,11 +73,14 @@ class Map {
             tainer.addChild(model)
             index += 1
         }
-        
+        tainer.strokeColor = UIColor.clearColor()
         return tainer
     }
     
     func bottomFrameTurnZero(length: CGFloat){
+        if self.listRange.btm < self.bigFrame.frame.height {
+            return
+        }
         
         if let _ = self.tainer{
             if self.tainer.position.y < listRange.top{

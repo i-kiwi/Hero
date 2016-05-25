@@ -80,6 +80,9 @@ let BOX_ZPOSITION: CGFloat = 1
 let BOX_LINE_ZPOSITION: CGFloat = 5
 let BUTTON_ZPOSITION:CGFloat = 5
 
+// attack
+let ATTACK_PANEL_ZPOSITION:CGFloat = 10
+
 //making box
 let CONTAINER_BOX_ZPOSITION:CGFloat = 10
 let CONTAINER_BOX_LINE_ZPOSITION:CGFloat = 12
@@ -134,15 +137,31 @@ let MAP_TAINER_NAME = "mapTainer"
 // pack
 let PACK_TAINER_NAME = "packTainer"
 let PACK_GOODS_NAME = "packGoods-"
+
 // font family
 let FONT_FAMILY_BOLD_NAME = "Courier-Bold"
 let FONT_FAMILY_NAME = "Courier"
+
+// 盒子背景透明度
+let BOX_BACK_ALPHA = "4"
 
 // 装备栏名称
 //剑
 let SWORD_EQUIP_NAME = "swordEquip"
 //枪
 let GUN_EQUIP_NAME = "gunEquip"
+
+enum attackButtonName: String{
+    case attack = "attackButtonName_flag"
+    case up = "upButtonName_flag"
+    case down = "downButtonName_flag"
+    case left = "leftButtonName_flag"
+    case right = "rightButtonName_flag"
+    case pack1 = "pack1ButtonName_flag"
+    case pack2 = "pack2ButtonName_flag"
+    case gunSlide = "gunSlideName"
+    case gun = "gunButtonName_flag"
+}
 
 
 

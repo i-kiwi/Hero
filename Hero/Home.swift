@@ -26,6 +26,8 @@ class Home: SKScene {
     var state:State!
     // 地图
     var map: Map!
+    // 商店
+    var shop: Shop!
     // 背包
     var pack: Pack!
     // 手指点击或滑动时的Y轴
@@ -100,50 +102,65 @@ class Home: SKScene {
             let node = nodeAtPoint(touchPosition)
             
             if let name = node.name{
-                // 底部制造按钮
+                // 点击按钮更换背景图片，并恢复上次点击的背景图片
+                func btnAction(){
+                    if let node = node as? SKShapeNode{
+                        if let _ = self.lastBtnNode {
+                            self.lastBtnNode.fillTexture = SKTexture(imageNamed: "btn\(self.lastBtnIndex)_0.png")
+                            self.lastBtnNode.strokeColor = UIColor.blackColor()
+                        }
+                        self.lastBtnIndex = self.currentButtonName.substringFromIndex(6)
+                        node.fillTexture = SKTexture(imageNamed: "btn\(self.lastBtnIndex)_1.png")
+                        node.strokeColor = UIColor.whiteColor()
+                        self.lastBtnNode = node
+                    }
+                }
+                // 底部按钮
                 if name == "\(BUTTON_NAME)\(buttonIndexEnum.制造.rawValue)"{
                     if name != self.currentButtonName{
                         self.changeViewAction()
                         self.showMakingView()
                         self.currentButtonName = name
+                        btnAction()
                     }
                 }else if name == "\(BUTTON_NAME)\(buttonIndexEnum.探索.rawValue)" {
                     if name != self.currentButtonName{
                         self.changeViewAction()
                         self.showExploreView()
                         self.currentButtonName = name
+                        btnAction()
                     }
                 }else if name == "\(BUTTON_NAME)\(buttonIndexEnum.个人.rawValue)" {
                     if name != self.currentButtonName{
                         self.changeViewAction()
                         self.showStateView()
                         self.currentButtonName = name
+                        btnAction()
                     }
                 }else if name == "\(BUTTON_NAME)\(buttonIndexEnum.图册.rawValue)" {
                     if name != self.currentButtonName{
                         self.changeViewAction()
                         self.showMapView()
                         self.currentButtonName = name
+                        btnAction()
+                    }
+                }else if name == "\(BUTTON_NAME)\(buttonIndexEnum.商店.rawValue)" {
+                    if name != self.currentButtonName{
+                        self.changeViewAction()
+                        self.showShopView()
+                        self.currentButtonName = name
+                        btnAction()
                     }
                 }else if name == "\(BUTTON_NAME)\(buttonIndexEnum.背包.rawValue)" {
                     if name != self.currentButtonName{
                         self.changeViewAction()
                         self.showPackView()
                         self.currentButtonName = name
+                        btnAction()
                     }
                 }
                 
-                // 点击按钮更换背景图片，并恢复上次点击的背景图片
-                if let node = node as? SKShapeNode{
-                    if let _ = self.lastBtnNode {
-                        self.lastBtnNode.fillTexture = SKTexture(imageNamed: "btn\(self.lastBtnIndex)_0.png")
-                        self.lastBtnNode.strokeColor = UIColor.blackColor()
-                    }
-                    self.lastBtnIndex = self.currentButtonName.substringFromIndex(6)
-                    node.fillTexture = SKTexture(imageNamed: "btn\(self.lastBtnIndex)_1.png")
-                    node.strokeColor = UIColor.whiteColor()
-                    self.lastBtnNode = node
-                }
+                
             }
         }
         
@@ -206,6 +223,13 @@ class Home: SKScene {
         let mapBox = map.mapBox
         self.boxFactory.midBox.removeAllChildren()
         self.boxFactory.midBox.addChild(mapBox)
+    }
+    // 商店窗口
+    func showShopView(){
+        self.shop = Shop.getInstance()
+        let shopBox = shop.shopBox
+        self.boxFactory.midBox.removeAllChildren()
+        self.boxFactory.midBox.addChild(shopBox)
     }
     // 背包窗口
     func showPackView(){
@@ -277,6 +301,11 @@ class Home: SKScene {
             self.pack.bottomFrameTurnZero(self.moveLength)
         }
         
+//        // 点击底部
+//        if let touchPosition = touches.first?.locationInNode(self.boxFactory.btmBox){
+//            let nodeName = nodeAtPoint(touchPosition).name
+//            nodeName?.substringToIndex
+////        }
         
         
     }

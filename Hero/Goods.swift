@@ -23,7 +23,7 @@ class Goods{
     func addToListContent(sprite: SKSpriteNode, index: Int){
         // index
         let indexLabel = SKLabelNode(fontNamed: FONT_FAMILY_BOLD_NAME)
-        indexLabel.fontColor = UIColor.blackColor()
+        indexLabel.fontColor = UIColor.whiteColor()
         indexLabel.text = "\(index + 1)"
         indexLabel.fontSize = 40
         indexLabel.position = CGPointMake(20, -60)
@@ -43,7 +43,7 @@ class Goods{
         
         // name
         let nameLabel = SKLabelNode(fontNamed: FONT_FAMILY_NAME)
-        nameLabel.fontColor = UIColor.redColor()
+        nameLabel.fontColor = UIColor.whiteColor()
         nameLabel.text = self.name
         nameLabel.fontSize = 40
         nameLabel.position = CGPointMake(250, -80)
@@ -52,7 +52,7 @@ class Goods{
         
         // attribute
         let attribute = SKLabelNode(fontNamed: FONT_FAMILY_NAME)
-        attribute.fontColor = UIColor.blackColor()
+        attribute.fontColor = UIColor.grayColor()
         attribute.text = self.attribute
         attribute.fontSize = 35
         attribute.position = CGPointMake(250, -160)

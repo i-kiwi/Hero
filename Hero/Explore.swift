@@ -20,7 +20,7 @@ class Explore {
     let boxFactory = BoxFactory.getInstance()
     // role
     let role = Role.getInstance()
-    let heroSprite = HeroRunFactory.getInstance()
+    let heroSprite = RoleTexture.getInstance()
     
     
     let single: String!
@@ -45,16 +45,23 @@ class Explore {
         
         self.exploreTopFrame = boxFactory.getModuleTopFrame()
         self.exploreBtmFrame = boxFactory.getModuleBottomFrame()
-        
+    
         
         exploreBox.addChild(exploreTopFrame)
         exploreBox.addChild(exploreBtmFrame)
     }
     
     func initHeroSprite(){
-        self.heroSprite.position = CGPointMake(self.exploreBtmFrame.frame.width / 2, self.exploreBtmFrame.frame.height / 2)
-        self.exploreBtmFrame.addChild(self.heroSprite)
-        self.heroSprite.run()
+        if let crop = self.boxFactory.crop{
+            self.heroSprite.position = CGPointMake(self.exploreBtmFrame.frame.width / 2, self.exploreBtmFrame.frame.height / 2)
+            crop.removeAllChildren()
+            crop.addChild(self.heroSprite)
+            crop.addChild(SKShapeNode())//添加一个空图形，否则SKCropNode背景不渲染
+            self.heroSprite.run()
+        }
+        
+        
+    
         
     }
 }

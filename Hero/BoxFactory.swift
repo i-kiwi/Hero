@@ -72,7 +72,7 @@ class BoxFactory {
         topBoxLine.fillColor = BOX_LINE_FILL_COLOR
         topBoxLine.lineWidth = BOX_LINE_WIDTH
         topBoxLine.zPosition = BOX_LINE_ZPOSITION
-        topBoxLine.fillTexture = SKTexture(imageNamed: "alpha6.png")
+        topBoxLine.fillTexture = SKTexture(imageNamed: "alpha\(BOX_BACK_ALPHA).png")
         topBox.addChild(topBoxLine)
         
         
@@ -106,7 +106,7 @@ class BoxFactory {
         btmBoxLine.fillColor = BOX_LINE_FILL_COLOR
         btmBoxLine.lineWidth = BOX_LINE_WIDTH
         btmBoxLine.zPosition = BOX_LINE_ZPOSITION
-        btmBoxLine.fillTexture = SKTexture(imageNamed: "alpha6.png")
+        btmBoxLine.fillTexture = SKTexture(imageNamed: "alpha\(BOX_BACK_ALPHA).png")
         btmBox.addChild(btmBoxLine)
     }
     
@@ -119,9 +119,10 @@ class BoxFactory {
         let shape = SKShapeNode(rect: CGRectMake(BOX_LINE_MARGIN, BOX_LINE_MARGIN, SCENE_SIZE.width - BOX_LINE_MARGIN * 2, MID_BOX_HEIGHT - BOX_LINE_MARGIN * 2), cornerRadius: HOME_BOX_RADIUS)
         shape.strokeColor = CONTAINER_BOX_LINE_COLOR
         shape.lineWidth = BOX_LINE_WIDTH
-//        shape.fillColor = CONTAINER_BOX_FILL_COLOR
+        shape.fillColor = CONTAINER_BOX_FILL_COLOR
         shape.zPosition = CONTAINER_BOX_LINE_ZPOSITION
         shape.name = SHAPE_NAME
+        shape.fillTexture = SKTexture(imageNamed: "alpha\(BOX_BACK_ALPHA).png")
         containerBox.size = shape.frame.size
         containerBox.zPosition = CONTAINER_BOX_ZPOSITION
         containerBox.addChild(shape)
@@ -137,6 +138,7 @@ class BoxFactory {
         shape.lineWidth = FRAME_LINE_WIDTH
         shape.fillColor = FRAME_FILL_COLOR
         shape.zPosition = FRAME_LINE_ZPOSITION
+        shape.fillTexture = SKTexture(imageNamed: "alpha4")
         
         topFrame.size = shape.frame.size
         topFrame.zPosition = FRAME_ZPOSITION
@@ -158,12 +160,12 @@ class BoxFactory {
         shape.lineWidth = FRAME_LINE_WIDTH
         shape.fillColor = FRAME_FILL_COLOR
         shape.zPosition = FRAME_LINE_ZPOSITION
-        
+        shape.fillTexture = SKTexture(imageNamed: "alpha4")
         let frame = shape.copy() as! SKShapeNode
         
         self.crop = SKCropNode()
         crop.maskNode = showScope//shape
-        
+
         frame.addChild(crop)
         
         bottomFrame.size = shape.frame.size
@@ -185,6 +187,7 @@ class BoxFactory {
         shape.lineWidth = FRAME_LINE_WIDTH
         shape.fillColor = FRAME_FILL_COLOR
         shape.zPosition = FRAME_LINE_ZPOSITION
+        shape.fillTexture = SKTexture(imageNamed: "alpha4")
         
         let frame = shape.copy() as! SKShapeNode
         

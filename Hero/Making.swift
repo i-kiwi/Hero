@@ -68,6 +68,9 @@ class Making {
     }
     
     func bottomFrameTurnZero(length: CGFloat){
+        if self.listRange.btm < self.makingBtmFrame.frame.height{
+            return
+        }
         
         if let _ = self.tainer{
             if self.tainer.position.y < listRange.top{
@@ -76,6 +79,7 @@ class Making {
                 let action = SKAction.moveToY(listRange.top, duration: 0.1)
                 self.tainer.runAction(action)
             }else if self.tainer.position.y > listRange.btm{
+                print("\(self.tainer.position.y)")
                 // turn bottom
                 self.tainer.removeAllActions()
                 let action = SKAction.moveToY(listRange.btm, duration: 0.1)
@@ -119,7 +123,7 @@ class Making {
             tainer.addChild(model)
             index += 1
         }
-        
+        tainer.strokeColor = UIColor.clearColor()
         return tainer
     }
     

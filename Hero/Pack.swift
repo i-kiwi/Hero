@@ -69,7 +69,7 @@ class Pack {
             
             tainer.addChild(model)
         }
-        
+        tainer.strokeColor = UIColor.clearColor()
         return tainer
     }
     

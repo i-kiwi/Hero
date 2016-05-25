@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import JMessage
 
 class TestScene: SKScene{
 
