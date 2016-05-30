@@ -14,15 +14,27 @@ class Role: NSObject {
     var level: Int!
     
     // 有权限的物品
-    var entitledGoods: [Goods]!
+    var entitledGoods: [Goods] = []
     // 拥有的物品
-    var hasGoods: [Goods]!
+    var hasGoods: [Goods] = []
     // 穿戴的物品
-    var wearingGoods: NSMutableDictionary!
+    var wearingGoods = NSMutableDictionary()
     // 物品数量上限
     var goodsCountUpperLimit: Int!
     // 图册
-    var placeMap: [Place]!
+    var placeMap: [Place] = []
+    // 是否准备好下个动作
+    var isReady: Bool = true
+    // 技能列表
+    var skills = NSMutableDictionary()
+//    // 攻击状态
+    var attackState: Int = 0 {
+        didSet{
+            if self.attackState > 3{
+                self.attackState = 0
+            }
+        }
+    }
     
 //    var goodsVerson: String!
     
@@ -43,12 +55,9 @@ class Role: NSObject {
         // loading role attribute
         self.name = "kiwi"
         self.level = 1
-        self.entitledGoods = []
-        self.hasGoods = []
         self.goodsCountUpperLimit = 50
         
-        self.wearingGoods = NSMutableDictionary()
-        self.placeMap = []
+//        self.wearingGoods = NSMutableDictionary()
 //        self.goodsVerson = "0.1"
         super.init()
         
@@ -68,7 +77,7 @@ class Role: NSObject {
         let hairGoods = Goods()
         hairGoods.ico = SKTexture(imageNamed: "btn3.jpg")
         
-        self.wearingGoods.setObject(hairGoods, forKey: GUN_EQUIP_NAME)
+        self.wearingGoods.setValue(hairGoods, forKey: GUN_EQUIP_NAME)
         //测试图册数据
         for index in 0 ..< 20{
             let place = Place()
@@ -79,6 +88,10 @@ class Role: NSObject {
             place.hasStar = index < 10 ? -1 : 0
             self.placeMap.append(place)
         }
+        //技能
+        self.skills.setValue(Skill(name: SkillName.downBlock.rawValue, cd: 1), forKey: SkillName.downBlock.rawValue)
+        self.skills.setValue(Skill(name: SkillName.afterTheJump.rawValue, cd: 1), forKey: SkillName.afterTheJump.rawValue)
+        self.skills.setValue(Skill(name: SkillName.beforeTheJump.rawValue, cd: 1), forKey: SkillName.beforeTheJump.rawValue)
         
         
     }

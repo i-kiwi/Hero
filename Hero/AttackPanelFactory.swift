@@ -44,15 +44,29 @@ class AttackPanelFactory {
     
     // 初始化攻击面板
     func initPanelButton(){
-        self.attackButton = self.getPanelRect((250, 250), name: attackButtonName.attack.rawValue)
-        self.upButton = self.getPanelRect((250, 100), name: attackButtonName.up.rawValue)
-        self.downButton = self.getPanelRect((250, 100), name: attackButtonName.down.rawValue)
-        self.leftButton = self.getPanelRect((100, 250), name: attackButtonName.left.rawValue)
-        self.rightButton = self.getPanelRect((100, 250), name: attackButtonName.right.rawValue)
-        self.pack1 = self.getPanelRect((150, 150), name: attackButtonName.pack1.rawValue, radius: 50)
-        self.pack2 = self.getPanelRect((150, 150), name: attackButtonName.pack2.rawValue, radius: 50)
-        self.gunSlide = self.getPanelRect((100, 400), name: attackButtonName.gunSlide.rawValue, radius: 60)
-        self.gunButton = self.getPanelRect((150, 150), name: attackButtonName.gun.rawValue, radius: 50, imageName: "alpha4")
+//        self.attackButton = self.getPanelRect((250, 250), name: attackButtonName.attack.rawValue)
+//        self.upButton = self.getPanelRect((250, 100), name: attackButtonName.up.rawValue)
+//        self.downButton = self.getPanelRect((250, 100), name: attackButtonName.down.rawValue)
+//        self.leftButton = self.getPanelRect((100, 250), name: attackButtonName.left.rawValue)
+//        self.rightButton = self.getPanelRect((100, 250), name: attackButtonName.right.rawValue)
+//        self.pack1 = self.getPanelRect((150, 150), name: attackButtonName.pack1.rawValue, radius: 50)
+//        self.pack2 = self.getPanelRect((150, 150), name: attackButtonName.pack2.rawValue, radius: 50)
+//        self.gunSlide = self.getPanelRect((100, 400), name: attackButtonName.gunSlide.rawValue, radius: 60)
+//        self.gunButton = self.getPanelRect((150, 150), name: attackButtonName.gun.rawValue, radius: 50, imageName: "alpha4")
+//        self.gunButton.zPosition = self.gunSlide.zPosition + 5
+        
+        self.attackButton = getMenuSprite(AttackImgName.attack.rawValue, name: attackButtonName.attack.rawValue)
+        self.leftButton = getMenuSprite(AttackImgName.direction.rawValue, name: attackButtonName.left.rawValue)
+        self.upButton = getMenuSprite(AttackImgName.direction.rawValue, name: attackButtonName.up.rawValue)
+        self.upButton.zRotation = CGFloat(M_PI_2 * 3)
+        self.rightButton = getMenuSprite(AttackImgName.direction.rawValue, name: attackButtonName.right.rawValue)
+        self.rightButton.zRotation = CGFloat(M_PI)
+        self.downButton = getMenuSprite(AttackImgName.direction.rawValue, name: attackButtonName.down.rawValue)
+        self.downButton.zRotation = CGFloat(M_PI_2)
+        self.pack1 = getMenuSprite(AttackImgName.pack.rawValue, name: attackButtonName.pack1.rawValue)
+        self.pack2 = getMenuSprite(AttackImgName.pack.rawValue, name: attackButtonName.pack2.rawValue)
+        self.gunSlide = getMenuSprite(AttackImgName.gunSlide.rawValue, name: attackButtonName.gunSlide.rawValue)
+        self.gunButton = getMenuSprite(AttackImgName.fire.rawValue, name: attackButtonName.gun.rawValue)
         self.gunButton.zPosition = self.gunSlide.zPosition + 5
     }
     
@@ -70,6 +84,14 @@ class AttackPanelFactory {
         shape.fillTexture = SKTexture(imageNamed: imageName)
         shape.name = name
         sprite.addChild(shape)
+        return sprite
+    }
+    // 获取攻击菜单按钮精灵
+    func getMenuSprite(imageName: String, name: String) -> SKSpriteNode{
+        let sprite = SKSpriteNode(imageNamed: imageName)
+        sprite.zPosition = ATTACK_PANEL_ZPOSITION
+        sprite.anchorPoint = CGPointMake(0.5, 0.5)
+        sprite.name = name
         return sprite
     }
     

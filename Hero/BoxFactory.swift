@@ -41,7 +41,7 @@ class BoxFactory {
     
     
     func boxBackInit(){
-        self.backBox = SKSpriteNode(imageNamed: "backgroundImg.jpg")
+        self.backBox = SKSpriteNode(imageNamed: "backImg3.jpg")//"backgroundImg.jpg")
         backBox.anchorPoint = CGPointMake(0, 0)
         backBox.zPosition = BOX_ZPOSITION
         backBox.position = CGPointMake(0, 0)

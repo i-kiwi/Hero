@@ -76,6 +76,14 @@
 		577F69F91CC76AEF0075FE23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 577F69F71CC76AEF0075FE23 /* LaunchScreen.storyboard */; };
 		577F6A061CC7715A0075FE23 /* Defined.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577F6A051CC7715A0075FE23 /* Defined.swift */; };
 		577F6A0F1CC77BD30075FE23 /* HeroRunFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577F6A0E1CC77BD30075FE23 /* HeroRunFactory.swift */; };
+		57B68F9E1CF697C90078F230 /* attackImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 57B68F991CF697C90078F230 /* attackImg.png */; };
+		57B68F9F1CF697C90078F230 /* directionImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 57B68F9A1CF697C90078F230 /* directionImg.png */; };
+		57B68FA01CF697C90078F230 /* fireImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 57B68F9B1CF697C90078F230 /* fireImg.png */; };
+		57B68FA11CF697C90078F230 /* gunSlideImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 57B68F9C1CF697C90078F230 /* gunSlideImg.png */; };
+		57B68FA21CF697C90078F230 /* packImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 57B68F9D1CF697C90078F230 /* packImg.png */; };
+		57B68FA61CF6A2F80078F230 /* backImg2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57B68FA51CF6A2F80078F230 /* backImg2.jpg */; };
+		57B68FA81CF6A3890078F230 /* backImg3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57B68FA71CF6A3890078F230 /* backImg3.jpg */; };
+		57B68FAA1CF6DC6C0078F230 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B68FA91CF6DC6C0078F230 /* Skill.swift */; };
 		57C90F531CD080EA00DBA58F /* TestScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C90F521CD080EA00DBA58F /* TestScene.swift */; };
 		57C90F551CD0BF4700DBA58F /* TouchUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C90F541CD0BF4700DBA58F /* TouchUtil.swift */; };
 		57C90F571CD230B300DBA58F /* MathUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C90F561CD230B300DBA58F /* MathUtil.swift */; };
@@ -153,6 +161,14 @@
 		577F69FA1CC76AEF0075FE23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		577F6A051CC7715A0075FE23 /* Defined.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defined.swift; sourceTree = "<group>"; };
 		577F6A0E1CC77BD30075FE23 /* HeroRunFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroRunFactory.swift; sourceTree = "<group>"; };
+		57B68F991CF697C90078F230 /* attackImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = attackImg.png; sourceTree = "<group>"; };
+		57B68F9A1CF697C90078F230 /* directionImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = directionImg.png; sourceTree = "<group>"; };
+		57B68F9B1CF697C90078F230 /* fireImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fireImg.png; sourceTree = "<group>"; };
+		57B68F9C1CF697C90078F230 /* gunSlideImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gunSlideImg.png; sourceTree = "<group>"; };
+		57B68F9D1CF697C90078F230 /* packImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = packImg.png; sourceTree = "<group>"; };
+		57B68FA51CF6A2F80078F230 /* backImg2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = backImg2.jpg; sourceTree = "<group>"; };
+		57B68FA71CF6A3890078F230 /* backImg3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = backImg3.jpg; sourceTree = "<group>"; };
+		57B68FA91CF6DC6C0078F230 /* Skill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Skill.swift; path = entity/Skill.swift; sourceTree = "<group>"; };
 		57C90F521CD080EA00DBA58F /* TestScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestScene.swift; sourceTree = "<group>"; };
 		57C90F541CD0BF4700DBA58F /* TouchUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchUtil.swift; sourceTree = "<group>"; };
 		57C90F561CD230B300DBA58F /* MathUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathUtil.swift; sourceTree = "<group>"; };
@@ -253,7 +269,10 @@
 		575A26931CCCEB11009D4AAC /* image */ = {
 			isa = PBXGroup;
 			children = (
+				57B68FA51CF6A2F80078F230 /* backImg2.jpg */,
+				57B68FA71CF6A3890078F230 /* backImg3.jpg */,
 				57436BD61CF1B0A300A18AC2 /* body_texture */,
+				57B68F981CF697C90078F230 /* attackImg */,
 				57436BC21CED4DBE00A18AC2 /* alphaImg */,
 				5713EEEC1CCBF14500A00B73 /* btnIco */,
 				57436BD41CED999900A18AC2 /* backgroundImg.jpg */,
@@ -329,6 +348,7 @@
 				575A26901CCCE995009D4AAC /* Role.swift */,
 				575A268E1CCCD1CF009D4AAC /* Goods.swift */,
 				57106D761CD9CCD10095F963 /* Place.swift */,
+				57B68FA91CF6DC6C0078F230 /* Skill.swift */,
 			);
 			name = entity;
 			sourceTree = "<group>";
@@ -353,6 +373,18 @@
 				577F69F71CC76AEF0075FE23 /* LaunchScreen.storyboard */,
 			);
 			name = other;
+			sourceTree = "<group>";
+		};
+		57B68F981CF697C90078F230 /* attackImg */ = {
+			isa = PBXGroup;
+			children = (
+				57B68F991CF697C90078F230 /* attackImg.png */,
+				57B68F9A1CF697C90078F230 /* directionImg.png */,
+				57B68F9B1CF697C90078F230 /* fireImg.png */,
+				57B68F9C1CF697C90078F230 /* gunSlideImg.png */,
+				57B68F9D1CF697C90078F230 /* packImg.png */,
+			);
+			path = attackImg;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,6 +452,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				57436BC91CED4DBE00A18AC2 /* alpha4.png in Resources */,
+				57B68F9F1CF697C90078F230 /* directionImg.png in Resources */,
+				57B68F9E1CF697C90078F230 /* attackImg.png in Resources */,
 				577F69ED1CC76AEF0075FE23 /* GameScene.sks in Resources */,
 				57436BBC1CED48DC00A18AC2 /* btn5_0.png in Resources */,
 				575A26881CCC92FD009D4AAC /* btn3.jpg in Resources */,
@@ -431,20 +465,25 @@
 				5713EEFC1CCBF14500A00B73 /* btn7.jpg in Resources */,
 				57436BC11CED48DC00A18AC2 /* btn7_1.png in Resources */,
 				577F69F91CC76AEF0075FE23 /* LaunchScreen.storyboard in Resources */,
+				57B68FA21CF697C90078F230 /* packImg.png in Resources */,
 				577F69F61CC76AEF0075FE23 /* Assets.xcassets in Resources */,
 				57436BAE1CED482F00A18AC2 /* btn2_0.png in Resources */,
 				57436BCD1CED4DBE00A18AC2 /* alpha8.png in Resources */,
+				57B68FA01CF697C90078F230 /* fireImg.png in Resources */,
 				5713EEFA1CCBF14500A00B73 /* btn5.jpg in Resources */,
 				57436BAC1CED482F00A18AC2 /* btn1_0.png in Resources */,
+				57B68FA11CF697C90078F230 /* gunSlideImg.png in Resources */,
 				57436BDF1CF1B0A300A18AC2 /* p_run0.png in Resources */,
 				57436BCE1CED4DBE00A18AC2 /* alpha9.png in Resources */,
 				57436BBB1CED48DC00A18AC2 /* btn4_1.png in Resources */,
 				5713EED41CC9C5A700A00B73 /* body2.png in Resources */,
 				57436BB11CED482F00A18AC2 /* btn3_1.png in Resources */,
+				57B68FA61CF6A2F80078F230 /* backImg2.jpg in Resources */,
 				57436BE41CF1B0A300A18AC2 /* p_run5.png in Resources */,
 				57436BCC1CED4DBE00A18AC2 /* alpha7.png in Resources */,
 				57436BCA1CED4DBE00A18AC2 /* alpha5.png in Resources */,
 				57436BE01CF1B0A300A18AC2 /* p_run1.png in Resources */,
+				57B68FA81CF6A3890078F230 /* backImg3.jpg in Resources */,
 				57436BE11CF1B0A300A18AC2 /* p_run2.png in Resources */,
 				57436BBE1CED48DC00A18AC2 /* btn6_0.png in Resources */,
 				5713EEF51CCBF14500A00B73 /* btn0.jpg in Resources */,
@@ -486,6 +525,7 @@
 				5713EEDA1CC9C9B500A00B73 /* HeroStateFactory.swift in Sources */,
 				57106D711CD849940095F963 /* Explore.swift in Sources */,
 				57C90F531CD080EA00DBA58F /* TestScene.swift in Sources */,
+				57B68FAA1CF6DC6C0078F230 /* Skill.swift in Sources */,
 				5713EEEA1CCBB67300A00B73 /* ButtonFactory.swift in Sources */,
 				5713EED61CC9C61500A00B73 /* Loading.swift in Sources */,
 				577F6A061CC7715A0075FE23 /* Defined.swift in Sources */,

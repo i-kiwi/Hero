@@ -28,6 +28,27 @@ class TestScene: SKScene{
         
         
         
+        let legLeftUp = SKSpriteNode(color: UIColor.blackColor(), size: CGSizeMake(20, 100))
+        legLeftUp.anchorPoint = CGPointMake(0.5, 1)
+        legLeftUp.position = CGPointMake(-40, 0)
+        let legRightUp = legLeftUp.copy() as! SKSpriteNode
+        legRightUp.position = CGPointMake(40, 0)
+        let legLeftDown = legLeftUp.copy() as! SKSpriteNode
+        legLeftDown.position = CGPointMake(0, -90)
+        let legRigthDown = legLeftUp.copy() as! SKSpriteNode
+        legRigthDown.position = CGPointMake(0, -90)
+        
+        self.addChild(legLeftUp)
+        legLeftUp.addChild(legLeftDown)
+        self.addChild(legRightUp)
+        legRightUp.addChild(legRigthDown)
+        
+        
+        
+        
+        
+        
+        
         
         
 //        let label = SKLabelNode()

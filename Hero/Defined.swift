@@ -164,6 +164,14 @@ enum attackButtonName: String{
 }
 
 
+enum AttackImgName: String{
+    case attack = "attackImg"
+    case direction = "directionImg"
+    case fire = "fireImg"
+    case gunSlide = "gunSlideImg"
+    case pack = "packImg"
+}
+
 
 /**
  * Button enum
@@ -177,5 +185,18 @@ enum buttonIndexEnum: Int {
     case 背包 = 5
     case 部落 = 6
     case 掠夺 = 7
+}
+
+
+enum SkillName: String{
+    case downBlock = "下格挡"
+    case afterTheJump = "后跳"
+    case beforeTheJump = "前跳"
+}
+
+enum TimeManager: CFTimeInterval{
+    case doubleClickTime = 0.5
+    case attackSkillBeginTime = 0.6
+    case attackSkillEndTime = 0.8
 }
 

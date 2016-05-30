@@ -15,29 +15,41 @@ class Attack: SKScene {
     let boxFactory = BoxFactory.getInstance()
     let attackFactory = AttackPanelFactory.getInstance()
     let hero = RoleTexture.getInstance()
+    let role = Role.getInstance()
     // 准星上下浮动范围
-    let gunButtonRange:(top: CGFloat, btm: CGFloat) = (BTM_BOX_HEIGHT / 2 + 200,BTM_BOX_HEIGHT / 2 - 200)
+    let gunButtonRange:(top: CGFloat, btm: CGFloat) = (BTM_BOX_HEIGHT / 2 + 180,BTM_BOX_HEIGHT / 2 - 180)
     // 当前点击的按钮
     var currentClickButton: SKNode!
     
     
     override func didMoveToView(view: SKView) {
         toViewInit()
-//
-        let tap = UITapGestureRecognizer(target: self, action: #selector(ee))
-        tap.numberOfTapsRequired = 2
-//        self.view?.addGestureRecognizer(tap)
-        self.hero.inputView?.addGestureRecognizer(tap)
         
-        print("\(self.hero.inputAccessoryViewController)")
     }
-    func ee(){
-        print("ee")
+    func initTapRequire(){
+        
+        let tap = UITapGestureRecognizer()
+        tap.addTarget(self, action: #selector(single))
+        
+        self.view?.addGestureRecognizer(tap)
+        
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(double))
+        doubleTap.numberOfTapsRequired = 2
+        self.view?.addGestureRecognizer(doubleTap)
+        
+        let threeTap = UITapGestureRecognizer(target: self, action: #selector(three))
+        threeTap.numberOfTapsRequired = 3
+        self.view?.addGestureRecognizer(threeTap)
+        
+        
+        tap.requireGestureRecognizerToFail(doubleTap)
+        doubleTap.requireGestureRecognizerToFail(threeTap)
     }
     
     func toViewInit(){
         // init self scene
         self.size = SCENE_SIZE
+        
         self.anchorPoint = CGPointMake(0, 0)
         self.backgroundColor = UIColor.whiteColor()
         
@@ -65,14 +77,14 @@ class Attack: SKScene {
     func initAttackPanel(){
         // 背景面板
         attackFactory.attackButton.position = CGPointMake(boxFactory.btmBox.frame.width / 2, boxFactory.btmBox.frame.height / 2)
-        attackFactory.upButton.position = CGPointMake(boxFactory.btmBox.frame.width / 2, 510)
-        attackFactory.downButton.position = CGPointMake(boxFactory.btmBox.frame.width / 2, 90)
-        attackFactory.leftButton.position = CGPointMake(320, boxFactory.btmBox.frame.height / 2)
-        attackFactory.rightButton.position = CGPointMake(760, boxFactory.btmBox.frame.height / 2)
-        attackFactory.pack1.position = CGPointMake(140, 400)
-        attackFactory.pack2.position = CGPointMake(140, 200)
-        attackFactory.gunSlide.position = CGPointMake(930, boxFactory.btmBox.frame.height / 2)
-        attackFactory.gunButton.position = CGPointMake(930, self.gunButtonRange.btm)
+        attackFactory.upButton.position = CGPointMake(boxFactory.btmBox.frame.width / 2, 500)
+        attackFactory.downButton.position = CGPointMake(boxFactory.btmBox.frame.width / 2, 100)
+        attackFactory.leftButton.position = CGPointMake(335, boxFactory.btmBox.frame.height / 2)
+        attackFactory.rightButton.position = CGPointMake(745, boxFactory.btmBox.frame.height / 2)
+        attackFactory.pack1.position = CGPointMake(140, 450)
+        attackFactory.pack2.position = CGPointMake(140, 150)
+        attackFactory.gunSlide.position = CGPointMake(940, boxFactory.btmBox.frame.height / 2)
+        attackFactory.gunButton.position = CGPointMake(940, self.gunButtonRange.btm)
         
         
         boxFactory.btmBox.addChild(attackFactory.attackButton)
@@ -88,22 +100,58 @@ class Attack: SKScene {
     }
     
     
+    func single(){
+//        print("single")
+        self.role.attackState = 0
+    }
+    func double(){
+        print("double")
+    }
+    func three(){
+        print("three")
+    }
+    
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+
+//        if let touch = touches.first?.tapCount{
+//            switch touch {
+//            case 1:
+//                self.performSelector(#selector(single), withObject: nil, afterDelay: 0.4)
+//                break
+//            case 2:
+//                NSObject.cancelPreviousPerformRequestsWithTarget(self, selector: #selector(single), object: nil)
+//                self.performSelector(#selector(double), withObject: nil, afterDelay: 0.4)
+//                break
+//            default:
+//                break
+//            }
+//        }
+        
+        
+        
+        
+        
         let node = self.nodeAtPoint((touches.first?.locationInNode(self.boxFactory.btmBox))!)
         // 如果当前点击的按钮不是上一次点击的按钮则重置
         if self.currentClickButton != node{
             self.currentClickButton = nil
         }
         // 如果点击的是方向键、攻击按钮、物品栏等 TODO
-        if let isBtn = node.name?.hasSuffix("_flag_")  {
-            if !isBtn{
+        if let isBtn = node.name?.hasSuffix("_flag")  {
+            if !isBtn || !self.role.isReady{
                 return
             }
             // 这次点击的时间
             let nowClickTime = CACurrentMediaTime()
             
             if node.name == attackButtonName.attack.rawValue{// 攻击按钮
-                print("attack!")
+                print("\(self.role.attackState)")
+                self.role.attackState += 1
+                // 未中断
+                NSObject.cancelPreviousPerformRequestsWithTarget(self, selector: #selector(single), object: nil)
+                // 超时中断当前连续动作
+                self.performSelector(#selector(single), withObject: nil, afterDelay: TimeManager.attackSkillEndTime.rawValue)
             }else if node.name == attackButtonName.gun.rawValue{// 射击按钮
                 print("fire!")
             }else if node.name == attackButtonName.up.rawValue{// 上
@@ -111,18 +159,33 @@ class Attack: SKScene {
             }else if node.name == attackButtonName.down.rawValue{// 下
                 print("down!")
             }else if node.name == attackButtonName.left.rawValue{// 左
-                if self.currentClickButton != nil && nowClickTime - self.clickTime < 1{
-                    print("double left!")
-                    
+                if self.currentClickButton != nil && nowClickTime - self.clickTime < TimeManager.doubleClickTime.rawValue{
+                    if let skill = self.role.skills.valueForKey(SkillName.afterTheJump.rawValue) as? Skill{
+                        if nowClickTime - skill.lastTime > skill.cd{
+                            skill.lastTime = nowClickTime
+                            print("double left!")
+                        }
+                    }
                     self.clickTime = 0
                 }else{
                     
-                    print("left!")
+//                    print("left!")
                     // 记录这次点击的时间
                     self.clickTime = nowClickTime
                 }
             }else if node.name == attackButtonName.right.rawValue{// 右
-                print("right!")
+                if self.currentClickButton != nil && nowClickTime - self.clickTime < TimeManager.doubleClickTime.rawValue{
+                    if let skill = self.role.skills.valueForKey(SkillName.beforeTheJump.rawValue) as? Skill{
+                        if nowClickTime - skill.lastTime > skill.cd{
+                            skill.lastTime = nowClickTime
+                            print("double right!")
+                        }
+                    }
+                    self.clickTime = 0
+                }else{
+                    // 记录这次点击的时间
+                    self.clickTime = nowClickTime
+                }
             }else if node.name == attackButtonName.pack1.rawValue{// 物品1
                 print("pack1!")
             }else if node.name == attackButtonName.pack2.rawValue{// 物品2
@@ -133,16 +196,7 @@ class Attack: SKScene {
             // 记录这次点击的按钮
             self.currentClickButton = node
         }
-        
-        
-//        if let _ = node{
-//            let nowClickTime = CACurrentMediaTime()
-//            if nowClickTime - self.clickTime < 1 {
-//                //1秒内双击
-//                print("double+")
-//            }
-//            self.clickTime = nowClickTime
-//        }
+
         
     }
     
