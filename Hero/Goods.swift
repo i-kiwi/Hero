@@ -20,20 +20,20 @@ class Goods{
 //    var timeFrame:SKShapeNode!
     
     
-    func addToListContent(sprite: SKSpriteNode, index: Int){
+    func addToListContent(_ sprite: SKSpriteNode, index: Int){
         // index
         let indexLabel = SKLabelNode(fontNamed: FONT_FAMILY_BOLD_NAME)
-        indexLabel.fontColor = UIColor.whiteColor()
+        indexLabel.fontColor = UIColor.white
         indexLabel.text = "\(index + 1)"
         indexLabel.fontSize = 40
-        indexLabel.position = CGPointMake(20, -60)
+        indexLabel.position = CGPoint(x: 20, y: -60)
         sprite.addChild(indexLabel)
         
         // ico
-        let icoNode = SKShapeNode(rect: CGRectMake(50, -((MAKING_CONTENT_MODEL_HEIGHT - LIST_ICO_NODE_WIDTH) / 2 + LIST_ICO_NODE_WIDTH), LIST_ICO_NODE_WIDTH, LIST_ICO_NODE_WIDTH), cornerRadius: 90)
+        let icoNode = SKShapeNode(rect: CGRect(x: 50, y: -((MAKING_CONTENT_MODEL_HEIGHT - LIST_ICO_NODE_WIDTH) / 2 + LIST_ICO_NODE_WIDTH), width: LIST_ICO_NODE_WIDTH, height: LIST_ICO_NODE_WIDTH), cornerRadius: 90)
         icoNode.strokeColor = LIST_ICO_NODE_COLOR
         icoNode.lineWidth = LIST_ICO_NODE_LINE_WIDTH
-        icoNode.fillColor = UIColor.whiteColor()
+        icoNode.fillColor = UIColor.white
         icoNode.fillTexture = self.ico
         icoNode.name = "\(GOODS_ICO_NAME)\(index)"
 //        self.timeFrame = icoNode.copy() as! SKShapeNode
@@ -43,30 +43,30 @@ class Goods{
         
         // name
         let nameLabel = SKLabelNode(fontNamed: FONT_FAMILY_NAME)
-        nameLabel.fontColor = UIColor.whiteColor()
+        nameLabel.fontColor = UIColor.white
         nameLabel.text = self.name
         nameLabel.fontSize = 40
-        nameLabel.position = CGPointMake(250, -80)
-        nameLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
+        nameLabel.position = CGPoint(x: 250, y: -80)
+        nameLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         sprite.addChild(nameLabel)
         
         // attribute
         let attribute = SKLabelNode(fontNamed: FONT_FAMILY_NAME)
-        attribute.fontColor = UIColor.grayColor()
+        attribute.fontColor = UIColor.gray
         attribute.text = self.attribute
         attribute.fontSize = 35
-        attribute.position = CGPointMake(250, -160)
-        attribute.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
+        attribute.position = CGPoint(x: 250, y: -160)
+        attribute.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         sprite.addChild(attribute)
         
         // bottom line
-        let btmLine = SKShapeNode(rect: CGRectMake(0, -MAKING_CONTENT_MODEL_HEIGHT, CONTENT_MODEL_WIDTH, 1))
-        btmLine.strokeColor = UIColor.lightGrayColor()
+        let btmLine = SKShapeNode(rect: CGRect(x: 0, y: -MAKING_CONTENT_MODEL_HEIGHT, width: CONTENT_MODEL_WIDTH, height: 1))
+        btmLine.strokeColor = UIColor.lightGray
         sprite.addChild(btmLine)
         if index == 0 {
             // top line
-            let topLine = SKShapeNode(rect: CGRectMake(0, 0, CONTENT_MODEL_WIDTH, 1))
-            topLine.strokeColor = UIColor.lightGrayColor()
+            let topLine = SKShapeNode(rect: CGRect(x: 0, y: 0, width: CONTENT_MODEL_WIDTH, height: 1))
+            topLine.strokeColor = UIColor.lightGray
             sprite.addChild(topLine)
         }
     

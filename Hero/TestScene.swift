@@ -11,16 +11,16 @@ import JMessage
 
 class TestScene: SKScene{
 
-    override func didMoveToView(view: SKView) {
+    override func didMove(to view: SKView) {
         
         self.size = SCENE_SIZE
-        self.anchorPoint = CGPointMake(0.5, 0.5)
-        let vertical = SKShapeNode(rect: CGRectMake(-SCENE_SIZE.width / 2, 0, SCENE_SIZE.width, 1))
-        vertical.strokeColor = UIColor.lightGrayColor()
+        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        let vertical = SKShapeNode(rect: CGRect(x: -SCENE_SIZE.width / 2, y: 0, width: SCENE_SIZE.width, height: 1))
+        vertical.strokeColor = UIColor.lightGray
         vertical.lineWidth = 1
         
-        let horizontal = SKShapeNode(rect: CGRectMake(0, -SCENE_SIZE.height / 2, 1, SCENE_SIZE.height))
-        horizontal.strokeColor = UIColor.lightGrayColor()
+        let horizontal = SKShapeNode(rect: CGRect(x: 0, y: -SCENE_SIZE.height / 2, width: 1, height: SCENE_SIZE.height))
+        horizontal.strokeColor = UIColor.lightGray
         horizontal.lineWidth = 1
         
         self.addChild(vertical)
@@ -28,15 +28,15 @@ class TestScene: SKScene{
         
         
         
-        let legLeftUp = SKSpriteNode(color: UIColor.blackColor(), size: CGSizeMake(20, 100))
-        legLeftUp.anchorPoint = CGPointMake(0.5, 1)
-        legLeftUp.position = CGPointMake(-40, 0)
+        let legLeftUp = SKSpriteNode(color: UIColor.black, size: CGSize(width: 20, height: 100))
+        legLeftUp.anchorPoint = CGPoint(x: 0.5, y: 1)
+        legLeftUp.position = CGPoint(x: -40, y: 0)
         let legRightUp = legLeftUp.copy() as! SKSpriteNode
-        legRightUp.position = CGPointMake(40, 0)
+        legRightUp.position = CGPoint(x: 40, y: 0)
         let legLeftDown = legLeftUp.copy() as! SKSpriteNode
-        legLeftDown.position = CGPointMake(0, -90)
+        legLeftDown.position = CGPoint(x: 0, y: -90)
         let legRigthDown = legLeftUp.copy() as! SKSpriteNode
-        legRigthDown.position = CGPointMake(0, -90)
+        legRigthDown.position = CGPoint(x: 0, y: -90)
         
         self.addChild(legLeftUp)
         legLeftUp.addChild(legLeftDown)
@@ -148,11 +148,11 @@ class TestScene: SKScene{
     
     // 网路连接
     func conn(){
-        let url = NSURL(string: "http://116.58.222.165/CXB_TASK/runner/redis.do?key=person_day_rank&field=1")
-        if let data = NSData(contentsOfURL: url!){
+        let url = URL(string: "http://116.58.222.165/CXB_TASK/runner/redis.do?key=person_day_rank&field=1")
+        if let data = try? Data(contentsOf: url!){
             do{
-                let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
-                let groupName = json.valueForKey("groupName")
+                let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)
+                let groupName = (json as AnyObject).value(forKey: "groupName")
                 
                 print("\(groupName)")
             }catch{

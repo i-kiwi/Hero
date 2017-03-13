@@ -40,7 +40,7 @@ class Home: SKScene {
     var lastBtnIndex:String!
     
     
-    override func didMoveToView(view: SKView) {
+    override func didMove(to view: SKView) {
         toViewInit()
 //        UpAndDownSlide()
         
@@ -50,37 +50,37 @@ class Home: SKScene {
     func toViewInit(){
         // init self scene
         self.size = SCENE_SIZE
-        self.anchorPoint = CGPointMake(0, 0)
-        self.backgroundColor = UIColor.whiteColor()
+        self.anchorPoint = CGPoint(x: 0, y: 0)
+        self.backgroundColor = UIColor.white
         
         // init background
         let boxBack = self.boxFactory.backBox
-        self.addChild(boxBack)
+        self.addChild(boxBack!)
         
         // init top/mid/btm box
         let topBox = boxFactory.topBox
         let midBox = boxFactory.midBox
         let btmBox = boxFactory.btmBox
-        self.addChild(topBox)
-        self.addChild(midBox)
-        self.addChild(btmBox)
+        self.addChild(topBox!)
+        self.addChild(midBox!)
+        self.addChild(btmBox!)
         
         //init btm button
         let btnFactroy = ButtonFactory.getInstance()
         let btnArr = btnFactroy.btnArr
-        for btn in btnArr {
+        for btn in btnArr! {
             self.addChild(btn)
         }
     }
     
     func UpAndDownSlide(){
-        let upSlide = UISwipeGestureRecognizer(target: self, action: Selector(self.upSlide()))
-        upSlide.direction = UISwipeGestureRecognizerDirection.Up
-        self.view?.addGestureRecognizer(upSlide)
+//        let upSlide = UISwipeGestureRecognizer(target: self, action: Selector(self.upSlide()))
+//        upSlide.direction = UISwipeGestureRecognizerDirection.up
+//        self.view?.addGestureRecognizer(upSlide)
         
-        let downSlide = UISwipeGestureRecognizer(target: self, action: Selector(self.downSlide()))
-        downSlide.direction = UISwipeGestureRecognizerDirection.Down
-        self.view?.addGestureRecognizer(downSlide)
+//        let downSlide = UISwipeGestureRecognizer(target: self, action: Selector(self.downSlide()))
+//        downSlide.direction = UISwipeGestureRecognizerDirection.down
+//        self.view?.addGestureRecognizer(downSlide)
         
     }
     
@@ -93,13 +93,13 @@ class Home: SKScene {
         
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // 初始化点击的Y轴位置
-        self.touchYPoint = (touches.first?.locationInNode(self).y)!
+        self.touchYPoint = (touches.first?.location(in: self).y)!
         
         // 点击底部
-        if let touchPosition = touches.first?.locationInNode(self.boxFactory.btmBox){
-            let node = nodeAtPoint(touchPosition)
+        if let touchPosition = touches.first?.location(in: self.boxFactory.btmBox){
+            let node = atPoint(touchPosition)
             
             if let name = node.name{
                 // 点击按钮更换背景图片，并恢复上次点击的背景图片
@@ -107,55 +107,55 @@ class Home: SKScene {
                     if let node = node as? SKShapeNode{
                         if let _ = self.lastBtnNode {
                             self.lastBtnNode.fillTexture = SKTexture(imageNamed: "btn\(self.lastBtnIndex)_0.png")
-                            self.lastBtnNode.strokeColor = UIColor.blackColor()
+                            self.lastBtnNode.strokeColor = UIColor.black
                         }
-                        self.lastBtnIndex = self.currentButtonName.substringFromIndex(6)
+                        self.lastBtnIndex = self.currentButtonName.substring(from: 6)
                         node.fillTexture = SKTexture(imageNamed: "btn\(self.lastBtnIndex)_1.png")
-                        node.strokeColor = UIColor.whiteColor()
+                        node.strokeColor = UIColor.white
                         self.lastBtnNode = node
                     }
                 }
                 // 底部按钮
                 if name == "\(BUTTON_NAME)\(buttonIndexEnum.制造.rawValue)"{
-                    if name != self.currentButtonName{
+                    if name != self.currentButtonName as String{
                         self.changeViewAction()
                         self.showMakingView()
-                        self.currentButtonName = name
+                        self.currentButtonName = name as NSString
                         btnAction()
                     }
                 }else if name == "\(BUTTON_NAME)\(buttonIndexEnum.探索.rawValue)" {
-                    if name != self.currentButtonName{
+                    if name != self.currentButtonName as String{
                         self.changeViewAction()
                         self.showExploreView()
-                        self.currentButtonName = name
+                        self.currentButtonName = name as NSString
                         btnAction()
                     }
                 }else if name == "\(BUTTON_NAME)\(buttonIndexEnum.个人.rawValue)" {
-                    if name != self.currentButtonName{
+                    if name != self.currentButtonName as String{
                         self.changeViewAction()
                         self.showStateView()
-                        self.currentButtonName = name
+                        self.currentButtonName = name as NSString
                         btnAction()
                     }
                 }else if name == "\(BUTTON_NAME)\(buttonIndexEnum.图册.rawValue)" {
-                    if name != self.currentButtonName{
+                    if name != self.currentButtonName as String{
                         self.changeViewAction()
                         self.showMapView()
-                        self.currentButtonName = name
+                        self.currentButtonName = name as NSString
                         btnAction()
                     }
                 }else if name == "\(BUTTON_NAME)\(buttonIndexEnum.商店.rawValue)" {
-                    if name != self.currentButtonName{
+                    if name != self.currentButtonName as String{
                         self.changeViewAction()
                         self.showShopView()
-                        self.currentButtonName = name
+                        self.currentButtonName = name as NSString
                         btnAction()
                     }
                 }else if name == "\(BUTTON_NAME)\(buttonIndexEnum.背包.rawValue)" {
-                    if name != self.currentButtonName{
+                    if name != self.currentButtonName as String{
                         self.changeViewAction()
                         self.showPackView()
-                        self.currentButtonName = name
+                        self.currentButtonName = name as NSString
                         btnAction()
                     }
                 }
@@ -166,14 +166,14 @@ class Home: SKScene {
         
         
         // 点击中部
-        if let touchPosition = touches.first?.locationInNode(self.boxFactory.midBox){
+        if let touchPosition = touches.first?.location(in: self.boxFactory.midBox){
             if MathUtil.isInRange(touchPosition.y, range: (CONTENT_MODEL_MARGIN, BOTTOM_FRAME_HEIGHT)){
-                let node = self.boxFactory.midBox.nodeAtPoint(touchPosition)
+                let node = self.boxFactory.midBox.atPoint(touchPosition)
                 
                 if let name = node.name{
                     // 点击列表ico图标
                     if name.hasPrefix(GOODS_ICO_NAME){
-                        if let a = Int(name.componentsSeparatedByString("-")[1]){
+                        if let a = Int(name.components(separatedBy: "-")[1]){
                             NSLog("\(a)")
 //                            let goods = self.role.entitledGoods[a]
 //                            let action = SKAction.resizeToWidth(300, duration: 0.3)
@@ -190,8 +190,8 @@ class Home: SKScene {
     // 切换窗口动画
     func changeViewAction(){
 //        let a = SKAction.moveByX(-50, y: -50, duration: 0.1)
-        self.boxFactory.midBox.runAction(SKAction.group([SKAction.scaleTo(1.05, duration: 0.1),SKAction.moveByX(-20, y: -20, duration: 0.1)]), completion: {
-            self.boxFactory.midBox.runAction(SKAction.group([SKAction.scaleTo(1, duration: 0.1),SKAction.moveByX(20, y: 20, duration: 0.1)]))
+        self.boxFactory.midBox.run(SKAction.group([SKAction.scale(to: 1.05, duration: 0.1),SKAction.moveBy(x: -20, y: -20, duration: 0.1)]), completion: {
+            self.boxFactory.midBox.run(SKAction.group([SKAction.scale(to: 1, duration: 0.1),SKAction.moveBy(x: 20, y: 20, duration: 0.1)]))
         })
     }
     
@@ -200,7 +200,7 @@ class Home: SKScene {
         self.making = Making.getInstance()
         let makingBox = making.makingBox
         self.boxFactory.midBox.removeAllChildren()
-        self.boxFactory.midBox.addChild(makingBox)
+        self.boxFactory.midBox.addChild(makingBox!)
     
     }
     // 探索窗口
@@ -208,50 +208,50 @@ class Home: SKScene {
         self.explore = Explore.getInstance()
         let exploreBox = explore.exploreBox
         self.boxFactory.midBox.removeAllChildren()
-        self.boxFactory.midBox.addChild(exploreBox)
+        self.boxFactory.midBox.addChild(exploreBox!)
     }
     // 个人状态窗口
     func showStateView(){
         self.state = State.getInstance()
         let stateBox = state.stateBox
         self.boxFactory.midBox.removeAllChildren()
-        self.boxFactory.midBox.addChild(stateBox)
+        self.boxFactory.midBox.addChild(stateBox!)
     }
     // 地图窗口
     func showMapView(){
         self.map = Map.getInstance()
         let mapBox = map.mapBox
         self.boxFactory.midBox.removeAllChildren()
-        self.boxFactory.midBox.addChild(mapBox)
+        self.boxFactory.midBox.addChild(mapBox!)
     }
     // 商店窗口
     func showShopView(){
         self.shop = Shop.getInstance()
         let shopBox = shop.shopBox
         self.boxFactory.midBox.removeAllChildren()
-        self.boxFactory.midBox.addChild(shopBox)
+        self.boxFactory.midBox.addChild(shopBox!)
     }
     // 背包窗口
     func showPackView(){
         self.pack = Pack.getInstance()
         let packBox = pack.packBox
         self.boxFactory.midBox.removeAllChildren()
-        self.boxFactory.midBox.addChild(packBox)
+        self.boxFactory.midBox.addChild(packBox!)
     }
     
     
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         // 手指移动的增量
-        let touch = touches.first?.locationInNode(self)
+        let touch = touches.first?.location(in: self)
         self.moveLength = 0
         func addMove(){
             self.moveLength = (touch?.y)! - self.touchYPoint
             self.touchYPoint = (touch?.y)!
         }
         
-        if let node: SKNode = self.nodeAtPoint(touch!){
+        if let node: SKNode = self.atPoint(touch!){
             
-            if self.currentButtonName == "\(BUTTON_NAME)\(buttonIndexEnum.制造.rawValue)" && MathUtil.isInRange(touch?.y, range: (BTM_BOX_HEIGHT,MAKING_LIST_ABSOLUTED_HEIGHT)){
+            if self.currentButtonName as String == "\(BUTTON_NAME)\(buttonIndexEnum.制造.rawValue)" && MathUtil.isInRange(touch?.y, range: (BTM_BOX_HEIGHT,MAKING_LIST_ABSOLUTED_HEIGHT)){
                 if node.name == MAKING_TAINER_NAME{
                     if let makingTainer = node.parent as? SKShapeNode{
                         if makingTainer.position.y > self.making.listRange.top - LIST_SLIDE_RANGE && makingTainer.position.y < self.making.listRange.btm + LIST_SLIDE_RANGE{
@@ -262,7 +262,7 @@ class Home: SKScene {
                     }
                     
                 }
-            }else if self.currentButtonName == "\(BUTTON_NAME)\(buttonIndexEnum.图册.rawValue)" && MathUtil.isInRange(touch?.y, range: (BTM_BOX_HEIGHT,MAP_LIST_ABSOLUTED_HEIGHT)){
+            }else if self.currentButtonName as String == "\(BUTTON_NAME)\(buttonIndexEnum.图册.rawValue)" && MathUtil.isInRange(touch?.y, range: (BTM_BOX_HEIGHT,MAP_LIST_ABSOLUTED_HEIGHT)){
                 if node.name == MAP_TAINER_NAME{
                     if let mapTainer = node.parent as? SKShapeNode{
                         if mapTainer.position.y > self.map.listRange.top - LIST_SLIDE_RANGE && mapTainer.position.y < self.map.listRange.btm + LIST_SLIDE_RANGE{
@@ -273,7 +273,7 @@ class Home: SKScene {
                     }
                     
                 }
-            }else if self.currentButtonName == "\(BUTTON_NAME)\(buttonIndexEnum.背包.rawValue)" && MathUtil.isInRange(touch?.y, range: (BTM_BOX_HEIGHT,MAP_LIST_ABSOLUTED_HEIGHT)){
+            }else if self.currentButtonName as String == "\(BUTTON_NAME)\(buttonIndexEnum.背包.rawValue)" && MathUtil.isInRange(touch?.y, range: (BTM_BOX_HEIGHT,MAP_LIST_ABSOLUTED_HEIGHT)){
                 if node.name == PACK_TAINER_NAME{
                     if let packTainer = node.parent as? SKShapeNode{
                         if packTainer.position.y > self.pack.listRange.top - LIST_SLIDE_RANGE && packTainer.position.y < self.pack.listRange.btm + LIST_SLIDE_RANGE{
@@ -289,15 +289,15 @@ class Home: SKScene {
         }
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 //        let touch = touches.first?.locationInNode(self)
 //        if let node: SKNode = self.nodeAtPoint(touch!){
         
-        if self.currentButtonName == "\(BUTTON_NAME)\(buttonIndexEnum.制造.rawValue)"{
+        if self.currentButtonName as String == "\(BUTTON_NAME)\(buttonIndexEnum.制造.rawValue)"{
             self.making.bottomFrameTurnZero(self.moveLength)
-        }else if self.currentButtonName == "\(BUTTON_NAME)\(buttonIndexEnum.图册.rawValue)"{
+        }else if self.currentButtonName as String == "\(BUTTON_NAME)\(buttonIndexEnum.图册.rawValue)"{
             self.map.bottomFrameTurnZero(self.moveLength)
-        }else if self.currentButtonName == "\(BUTTON_NAME)\(buttonIndexEnum.背包.rawValue)"{
+        }else if self.currentButtonName as String == "\(BUTTON_NAME)\(buttonIndexEnum.背包.rawValue)"{
             self.pack.bottomFrameTurnZero(self.moveLength)
         }
         

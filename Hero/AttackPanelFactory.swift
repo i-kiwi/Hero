@@ -72,34 +72,34 @@ class AttackPanelFactory {
     
     
     // 获取面板矩形
-    func getPanelRect(size:(CGFloat, CGFloat), name: String, radius: CGFloat = 25, imageName: String = "alpha5") -> SKSpriteNode{
+    func getPanelRect(_ size:(CGFloat, CGFloat), name: String, radius: CGFloat = 25, imageName: String = "alpha5") -> SKSpriteNode{
         let sprite = SKSpriteNode()
-        sprite.anchorPoint = CGPointMake(0.5, 0.5)
+        sprite.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         sprite.zPosition = ATTACK_PANEL_ZPOSITION
         
-        let shape = SKShapeNode(rect: CGRectMake(-size.0 / 2, -size.1 / 2, size.0, size.1), cornerRadius: radius)
-        shape.strokeColor = UIColor.blackColor()
+        let shape = SKShapeNode(rect: CGRect(x: -size.0 / 2, y: -size.1 / 2, width: size.0, height: size.1), cornerRadius: radius)
+        shape.strokeColor = UIColor.black
         shape.lineWidth = 3
-        shape.fillColor = UIColor.whiteColor()
+        shape.fillColor = UIColor.white
         shape.fillTexture = SKTexture(imageNamed: imageName)
         shape.name = name
         sprite.addChild(shape)
         return sprite
     }
     // 获取攻击菜单按钮精灵
-    func getMenuSprite(imageName: String, name: String) -> SKSpriteNode{
+    func getMenuSprite(_ imageName: String, name: String) -> SKSpriteNode{
         let sprite = SKSpriteNode(imageNamed: imageName)
         sprite.zPosition = ATTACK_PANEL_ZPOSITION
-        sprite.anchorPoint = CGPointMake(0.5, 0.5)
+        sprite.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         sprite.name = name
         return sprite
     }
     
     func attackBeganAction() -> SKAction{
-        return SKAction.scaleTo(0.99, duration: 0.02)
+        return SKAction.scale(to: 0.99, duration: 0.02)
     }
     func attackEndedAction() -> SKAction{
-        return SKAction.scaleTo(1, duration: 0.02)
+        return SKAction.scale(to: 1, duration: 0.02)
     }
     
     

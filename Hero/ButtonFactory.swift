@@ -34,11 +34,11 @@ class ButtonFactory {
             // container
             let node = SKSpriteNode()
             node.zPosition = 100
-            node.anchorPoint = CGPointMake(0, 0)
+            node.anchorPoint = CGPoint(x: 0, y: 0)
 //            node.size = CGSizeMake(BUTTON_WIDTH, BUTTON_HEIGHT)
             
             // shape
-            let shape = SKShapeNode(rect: CGRectMake(0, 0, BUTTON_WIDTH, BUTTON_HEIGHT), cornerRadius: BUTTON_RADIUS)
+            let shape = SKShapeNode(rect: CGRect(x: 0, y: 0, width: BUTTON_WIDTH, height: BUTTON_HEIGHT), cornerRadius: BUTTON_RADIUS)
             shape.strokeColor = BUTTON_LINE_COLOR
             shape.fillColor = BUTTON_FILL_COLOR
             shape.lineWidth = BUTTON_LINE_WIDTH
@@ -48,9 +48,9 @@ class ButtonFactory {
             node.addChild(shape)
             // position
             if i < 4 {
-                node.position = CGPointMake((SCENE_SIZE.width - BUTTON_WIDTH * 4) / 5 * (CGFloat(i) + 1) + CGFloat(i) * BUTTON_WIDTH, BTM_BOX_HEIGHT / 1.8)
+                node.position = CGPoint(x: (SCENE_SIZE.width - BUTTON_WIDTH * 4) / 5 * (CGFloat(i) + 1) + CGFloat(i) * BUTTON_WIDTH, y: BTM_BOX_HEIGHT / 1.8)
             }else{
-                node.position = CGPointMake((SCENE_SIZE.width - BUTTON_WIDTH * 4) / 5 * (CGFloat(i) - 3) + (CGFloat(i) - 4) * BUTTON_WIDTH, BTM_BOX_HEIGHT / 7.5)
+                node.position = CGPoint(x: (SCENE_SIZE.width - BUTTON_WIDTH * 4) / 5 * (CGFloat(i) - 3) + (CGFloat(i) - 4) * BUTTON_WIDTH, y: BTM_BOX_HEIGHT / 7.5)
             }
             self.btnArr.append(node)
             

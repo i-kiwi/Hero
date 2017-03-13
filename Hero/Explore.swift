@@ -53,7 +53,7 @@ class Explore {
     
     func initHeroSprite(){
         if let crop = self.boxFactory.crop{
-            self.heroSprite.position = CGPointMake(self.exploreBtmFrame.frame.width / 2, self.exploreBtmFrame.frame.height / 2)
+            self.heroSprite.position = CGPoint(x: self.exploreBtmFrame.frame.width / 2, y: self.exploreBtmFrame.frame.height / 2)
             crop.removeAllChildren()
             crop.addChild(self.heroSprite)
             crop.addChild(SKShapeNode())//添加一个空图形，否则SKCropNode背景不渲染

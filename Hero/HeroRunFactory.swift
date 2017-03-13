@@ -30,9 +30,9 @@ class HeroRunFactory: SKSpriteNode {
     init(){
         self.single = "the single model"
         let texture = SKTexture(imageNamed: "body")
-        let size = CGSizeMake(texture.size().width, texture.size().height)
-        super.init(texture:texture,color:SKColor.whiteColor(),size:size)
-        self.anchorPoint = CGPointMake(0.5, 0.5)
+        let size = CGSize(width: texture.size().width, height: texture.size().height)
+        super.init(texture:texture,color:SKColor.white,size:size)
+        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.zPosition = 100
         
         //eye
@@ -58,9 +58,9 @@ class HeroRunFactory: SKSpriteNode {
     
     /** -------------------------------------------BODY BEGIN---------------------------------------------- */
     func startBodyJumpAction(){
-        let jump1 = SKAction.moveByX(0, y: 2, duration: 0.2)
-        let jump2 = jump1.reversedAction()
-        self.runAction(SKAction.repeatActionForever(SKAction.sequence([jump1,jump2])))
+        let jump1 = SKAction.moveBy(x: 0, y: 2, duration: 0.2)
+        let jump2 = jump1.reversed()
+        self.run(SKAction.repeatForever(SKAction.sequence([jump1,jump2])))
     }
     
     func stopBodyJumpAction(){
@@ -73,26 +73,26 @@ class HeroRunFactory: SKSpriteNode {
     
     /** -------------------------------------------EYE BEGIN---------------------------------------------- */
     func getEye() -> SKSpriteNode {
-        let eye = SKSpriteNode(color: UIColor.blackColor(), size: CGSizeMake(5, 13))
-        eye.anchorPoint = CGPointMake(0.5, 0.5)
+        let eye = SKSpriteNode(color: UIColor.black, size: CGSize(width: 5, height: 13))
+        eye.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         eye.zPosition = EYE_ZPOSITION
         return eye
     }
     
     func startEyeAction(){
-        let close = SKAction.scaleXBy(1, y: 0.2, duration: 0.2)
-        let open = close.reversedAction()
-        let duration = SKAction.waitForDuration(5)
+        let close = SKAction.scaleX(by: 1, y: 0.2, duration: 0.2)
+        let open = close.reversed()
+        let duration = SKAction.wait(forDuration: 5)
         let blink = SKAction.sequence([close,open,duration])
-        self.leftEye.runAction(SKAction.repeatActionForever(blink))
-        self.rightEye.runAction(SKAction.repeatActionForever(blink))
+        self.leftEye.run(SKAction.repeatForever(blink))
+        self.rightEye.run(SKAction.repeatForever(blink))
     }
     
     func stopEyeAction(){
         self.leftEye.removeAllActions()
         self.rightEye.removeAllActions()
-        self.leftEye.position = CGPointMake(10, 10)
-        self.rightEye.position = CGPointMake(35, 10)
+        self.leftEye.position = CGPoint(x: 10, y: 10)
+        self.rightEye.position = CGPoint(x: 35, y: 10)
     }
     /** -------------------------------------------EYE END---------------------------------------------- */
 
@@ -102,22 +102,22 @@ class HeroRunFactory: SKSpriteNode {
     /** -------------------------------------------LEG BEGIN---------------------------------------------- */
     // start leg action
     func startLegAction(){
-        let runAction1 = SKAction.rotateByAngle(CGFloat(M_PI_4), duration: 0.2)
-        runAction1.timingMode = SKActionTimingMode.EaseInEaseOut
-        let runAction2 = runAction1.reversedAction()
+        let runAction1 = SKAction.rotate(byAngle: CGFloat(M_PI_4), duration: 0.2)
+        runAction1.timingMode = SKActionTimingMode.easeInEaseOut
+        let runAction2 = runAction1.reversed()
         let sequence1 = SKAction.sequence([runAction1,runAction2])
         let sequence2 = SKAction.sequence([runAction2,runAction1])
         
-        self.leftLeg.runAction(SKAction.repeatActionForever(sequence1), withKey: "leftLegAction")
-        self.rightLeg.runAction(SKAction.repeatActionForever(sequence2), withKey: "rightLegAction")
+        self.leftLeg.run(SKAction.repeatForever(sequence1), withKey: "leftLegAction")
+        self.rightLeg.run(SKAction.repeatForever(sequence2), withKey: "rightLegAction")
     }
     
     // stop leg action
     func stopLegAction(){
         self.leftLeg.removeAllActions()
         self.rightLeg.removeAllActions()
-        self.leftLeg.position = CGPointMake(-4, -52)
-        self.rightLeg.position = CGPointMake(8, -52)
+        self.leftLeg.position = CGPoint(x: -4, y: -52)
+        self.rightLeg.position = CGPoint(x: 8, y: -52)
         self.leftLeg.zRotation = 0
         self.rightLeg.zRotation = 0
     }
@@ -125,8 +125,8 @@ class HeroRunFactory: SKSpriteNode {
     
     // get leg
     func getLeg() -> SKSpriteNode {
-        let leg = SKSpriteNode(color: UIColor.blackColor(), size: CGSizeMake(6, 14))
-        leg.anchorPoint = CGPointMake(0.5, 2)
+        let leg = SKSpriteNode(color: UIColor.black, size: CGSize(width: 6, height: 14))
+        leg.anchorPoint = CGPoint(x: 0.5, y: 2)
         leg.zPosition = LEG_ZPOSITION
         return leg
     }
@@ -135,24 +135,24 @@ class HeroRunFactory: SKSpriteNode {
     
     /** -------------------------------------------ARM BEGIN---------------------------------------------- */
     func getArm() -> SKSpriteNode {
-        let arm = SKSpriteNode(color: UIColor.blackColor(), size: CGSizeMake(3, 20))
-        arm.anchorPoint = CGPointMake(0.5, 1)
+        let arm = SKSpriteNode(color: UIColor.black, size: CGSize(width: 3, height: 20))
+        arm.anchorPoint = CGPoint(x: 0.5, y: 1)
         arm.zPosition = ARM_ZPOSITION
         return arm
     }
     
     func startArmAction(){
         self.arm.zRotation = -0.5
-        let runAction1 = SKAction.rotateByAngle(CGFloat(M_PI_2), duration: 0.2)
-        runAction1.timingMode = SKActionTimingMode.EaseInEaseOut
-        let runAction2 = runAction1.reversedAction()
+        let runAction1 = SKAction.rotate(byAngle: CGFloat(M_PI_2), duration: 0.2)
+        runAction1.timingMode = SKActionTimingMode.easeInEaseOut
+        let runAction2 = runAction1.reversed()
         let sequence1 = SKAction.sequence([runAction1,runAction2])
-        self.arm.runAction(SKAction.repeatActionForever(sequence1),withKey: "armAction")
+        self.arm.run(SKAction.repeatForever(sequence1),withKey: "armAction")
     }
     
     func stopArmAction(){
         self.arm.removeAllActions()
-        self.arm.position = CGPointMake(-6, -35)
+        self.arm.position = CGPoint(x: -6, y: -35)
         self.arm.zRotation = 0
     }
     /** -------------------------------------------ARM END---------------------------------------------- */
@@ -165,9 +165,9 @@ class HeroRunFactory: SKSpriteNode {
     }
     
     func slowRun(){
-        let armAction = self.arm.actionForKey("armAction")
-        let leftLegAction = self.leftLeg.actionForKey("leftLegAction")
-        let rightLegAction = self.rightLeg.actionForKey("rightLegAction")
+        let armAction = self.arm.action(forKey: "armAction")
+        let leftLegAction = self.leftLeg.action(forKey: "leftLegAction")
+        let rightLegAction = self.rightLeg.action(forKey: "rightLegAction")
         self.stopBodyJumpAction()
         
         armAction?.speed = SLOW_RUN_SPEED

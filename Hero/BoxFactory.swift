@@ -42,9 +42,9 @@ class BoxFactory {
     
     func boxBackInit(){
         self.backBox = SKSpriteNode(imageNamed: "backImg3.jpg")//"backgroundImg.jpg")
-        backBox.anchorPoint = CGPointMake(0, 0)
+        backBox.anchorPoint = CGPoint(x: 0, y: 0)
         backBox.zPosition = BOX_ZPOSITION
-        backBox.position = CGPointMake(0, 0)
+        backBox.position = CGPoint(x: 0, y: 0)
         backBox.size = SCENE_SIZE
         
 //        let boxLine = SKSpriteNode(imageNamed: "backBox")
@@ -62,12 +62,12 @@ class BoxFactory {
         // top box
         self.topBox = SKSpriteNode()
         let topBoxHeight: CGFloat = TOP_BOX_HEIGHT
-        topBox.size = CGSizeMake(SCENE_SIZE.width, topBoxHeight)
-        topBox.position = CGPointMake(0, SCENE_SIZE.height - topBoxHeight)
-        topBox.anchorPoint = CGPointMake(0, 0)
+        topBox.size = CGSize(width: SCENE_SIZE.width, height: topBoxHeight)
+        topBox.position = CGPoint(x: 0, y: SCENE_SIZE.height - topBoxHeight)
+        topBox.anchorPoint = CGPoint(x: 0, y: 0)
         topBox.zPosition = BOX_ZPOSITION
         // top box line
-        let topBoxLine = SKShapeNode(rect: CGRectMake(BOX_LINE_MARGIN, BOX_LINE_MARGIN, topBox.frame.width - BOX_LINE_MARGIN * 2 , topBox.frame.height - BOX_LINE_MARGIN * 2), cornerRadius: 10)
+        let topBoxLine = SKShapeNode(rect: CGRect(x: BOX_LINE_MARGIN, y: BOX_LINE_MARGIN, width: topBox.frame.width - BOX_LINE_MARGIN * 2 , height: topBox.frame.height - BOX_LINE_MARGIN * 2), cornerRadius: 10)
         topBoxLine.strokeColor = BOX_LINE_COLOR
         topBoxLine.fillColor = BOX_LINE_FILL_COLOR
         topBoxLine.lineWidth = BOX_LINE_WIDTH
@@ -79,9 +79,9 @@ class BoxFactory {
         // mid box
         self.midBox = SKSpriteNode()
         let midBoxHeight:CGFloat = MID_BOX_HEIGHT
-        midBox.size = CGSizeMake(SCENE_SIZE.width, midBoxHeight)
-        midBox.position = CGPointMake(0, SCENE_SIZE.height - topBoxHeight - midBoxHeight - 15)
-        midBox.anchorPoint = CGPointMake(0, 0)
+        midBox.size = CGSize(width: SCENE_SIZE.width, height: midBoxHeight)
+        midBox.position = CGPoint(x: 0, y: SCENE_SIZE.height - topBoxHeight - midBoxHeight - 15)
+        midBox.anchorPoint = CGPoint(x: 0, y: 0)
         midBox.zPosition = BOX_ZPOSITION
         // mid box line
 //        let midBoxLine = SKShapeNode(rect: CGRectMake(BOX_LINE_MARGIN, BOX_LINE_MARGIN, midBox.frame.width - BOX_LINE_MARGIN * 2, midBox.frame.height - BOX_LINE_MARGIN * 2), cornerRadius: HOME_BOX_RADIUS)
@@ -96,12 +96,12 @@ class BoxFactory {
         // bottom box
         self.btmBox = SKSpriteNode()
         let btmBoxHeight:CGFloat = BTM_BOX_HEIGHT
-        btmBox.size = CGSizeMake(SCENE_SIZE.width, btmBoxHeight)
-        btmBox.position = CGPointMake(0, 0)
-        btmBox.anchorPoint = CGPointMake(0, 0)
+        btmBox.size = CGSize(width: SCENE_SIZE.width, height: btmBoxHeight)
+        btmBox.position = CGPoint(x: 0, y: 0)
+        btmBox.anchorPoint = CGPoint(x: 0, y: 0)
         btmBox.zPosition = BOX_ZPOSITION
         // bottom box line
-        let btmBoxLine = SKShapeNode(rect: CGRectMake(BOX_LINE_MARGIN, BOX_LINE_MARGIN, btmBox.frame.width - BOX_LINE_MARGIN * 2, btmBox.frame.height - BOX_LINE_MARGIN * 2), cornerRadius: 10)
+        let btmBoxLine = SKShapeNode(rect: CGRect(x: BOX_LINE_MARGIN, y: BOX_LINE_MARGIN, width: btmBox.frame.width - BOX_LINE_MARGIN * 2, height: btmBox.frame.height - BOX_LINE_MARGIN * 2), cornerRadius: 10)
         btmBoxLine.strokeColor = BOX_LINE_COLOR
         btmBoxLine.fillColor = BOX_LINE_FILL_COLOR
         btmBoxLine.lineWidth = BOX_LINE_WIDTH
@@ -116,7 +116,7 @@ class BoxFactory {
     // get module container box
     func getModuleContainerBox() -> SKSpriteNode{
         let containerBox = SKSpriteNode()
-        let shape = SKShapeNode(rect: CGRectMake(BOX_LINE_MARGIN, BOX_LINE_MARGIN, SCENE_SIZE.width - BOX_LINE_MARGIN * 2, MID_BOX_HEIGHT - BOX_LINE_MARGIN * 2), cornerRadius: HOME_BOX_RADIUS)
+        let shape = SKShapeNode(rect: CGRect(x: BOX_LINE_MARGIN, y: BOX_LINE_MARGIN, width: SCENE_SIZE.width - BOX_LINE_MARGIN * 2, height: MID_BOX_HEIGHT - BOX_LINE_MARGIN * 2), cornerRadius: HOME_BOX_RADIUS)
         shape.strokeColor = CONTAINER_BOX_LINE_COLOR
         shape.lineWidth = BOX_LINE_WIDTH
         shape.fillColor = CONTAINER_BOX_FILL_COLOR
@@ -133,7 +133,7 @@ class BoxFactory {
     // get module top frame
     func getModuleTopFrame() -> SKSpriteNode {
         let topFrame = SKSpriteNode()
-        let shape = SKShapeNode(rect: CGRectMake(FRAME_MARGIN, FRAME_MARGIN * 2 + BOTTOM_FRAME_HEIGHT, SCENE_SIZE.width - FRAME_MARGIN * 2, TOP_FRAME_HEIGHT), cornerRadius: FRAME_RADIUS)
+        let shape = SKShapeNode(rect: CGRect(x: FRAME_MARGIN, y: FRAME_MARGIN * 2 + BOTTOM_FRAME_HEIGHT, width: SCENE_SIZE.width - FRAME_MARGIN * 2, height: TOP_FRAME_HEIGHT), cornerRadius: FRAME_RADIUS)
         shape.strokeColor = FRAME_LINE_COLOR
         shape.lineWidth = FRAME_LINE_WIDTH
         shape.fillColor = FRAME_FILL_COLOR
@@ -149,13 +149,13 @@ class BoxFactory {
     // get module bottom frame
     func getModuleBottomFrame() -> SKSpriteNode {
         let bottomFrame = SKSpriteNode()
-        bottomFrame.anchorPoint = CGPointMake(0, 0)
-        bottomFrame.position = CGPointMake(FRAME_MARGIN, FRAME_MARGIN)
+        bottomFrame.anchorPoint = CGPoint(x: 0, y: 0)
+        bottomFrame.position = CGPoint(x: FRAME_MARGIN, y: FRAME_MARGIN)
         
-        let size = CGSizeMake(SCENE_SIZE.width - FRAME_MARGIN * 2, BOTTOM_FRAME_HEIGHT)
-        let showScope = SKShapeNode(rect: CGRectMake(0, FRAME_LINE_WIDTH, size.width, size.height - FRAME_LINE_WIDTH * 2), cornerRadius: FRAME_RADIUS)
-        showScope.fillColor = UIColor.whiteColor()
-        let shape = SKShapeNode(rect: CGRectMake(0, 0, size.width, size.height), cornerRadius: FRAME_RADIUS)
+        let size = CGSize(width: SCENE_SIZE.width - FRAME_MARGIN * 2, height: BOTTOM_FRAME_HEIGHT)
+        let showScope = SKShapeNode(rect: CGRect(x: 0, y: FRAME_LINE_WIDTH, width: size.width, height: size.height - FRAME_LINE_WIDTH * 2), cornerRadius: FRAME_RADIUS)
+        showScope.fillColor = UIColor.white
+        let shape = SKShapeNode(rect: CGRect(x: 0, y: 0, width: size.width, height: size.height), cornerRadius: FRAME_RADIUS)
         shape.strokeColor = FRAME_LINE_COLOR
         shape.lineWidth = FRAME_LINE_WIDTH
         shape.fillColor = FRAME_FILL_COLOR
@@ -177,12 +177,12 @@ class BoxFactory {
     
     func getBigModuleFrame() -> SKSpriteNode {
         let bigFrame = SKSpriteNode()
-        bigFrame.anchorPoint = CGPointMake(0, 0)
-        bigFrame.position = CGPointMake(FRAME_MARGIN, FRAME_MARGIN)
-        let size = CGSizeMake(SCENE_SIZE.width - FRAME_MARGIN * 2, BIG_FRAME_HEIGHT)
-        let showScope = SKShapeNode(rect: CGRectMake(0, FRAME_LINE_WIDTH, size.width, size.height - FRAME_LINE_WIDTH * 2), cornerRadius: FRAME_RADIUS)
-        showScope.fillColor = UIColor.whiteColor()
-        let shape = SKShapeNode(rect: CGRectMake(0, 0, size.width, size.height), cornerRadius: FRAME_RADIUS)
+        bigFrame.anchorPoint = CGPoint(x: 0, y: 0)
+        bigFrame.position = CGPoint(x: FRAME_MARGIN, y: FRAME_MARGIN)
+        let size = CGSize(width: SCENE_SIZE.width - FRAME_MARGIN * 2, height: BIG_FRAME_HEIGHT)
+        let showScope = SKShapeNode(rect: CGRect(x: 0, y: FRAME_LINE_WIDTH, width: size.width, height: size.height - FRAME_LINE_WIDTH * 2), cornerRadius: FRAME_RADIUS)
+        showScope.fillColor = UIColor.white
+        let shape = SKShapeNode(rect: CGRect(x: 0, y: 0, width: size.width, height: size.height), cornerRadius: FRAME_RADIUS)
         shape.strokeColor = FRAME_LINE_COLOR
         shape.lineWidth = FRAME_LINE_WIDTH
         shape.fillColor = FRAME_FILL_COLOR
@@ -205,21 +205,21 @@ class BoxFactory {
     
     
     // 获取一个六边形边框
-    func getHexagonShape(texture: SKTexture?) -> SKShapeNode{
-        let transform = CGAffineTransformMakeTranslation(-50, -80)
-        let path = CGPathCreateMutable()
-        let point0 = CGPointMake(0, 0)
-        let point1 = CGPointMake(100, 0)
-        let point2 = CGPointMake(140, 80)
-        let point3 = CGPointMake(100, 160)
-        let point4 = CGPointMake(0, 160)
-        let point5 = CGPointMake(-40, 80)
-        let point6 = CGPointMake(0, 0)
-        CGPathAddLines(path, [transform], [point0,point1,point2,point3,point4,point5,point6], 7)
+    func getHexagonShape(_ texture: SKTexture?) -> SKShapeNode{
+        let transform = CGAffineTransform(translationX: -50, y: -80)
+        let path = CGMutablePath()
+        let point0 = CGPoint(x: 0, y: 0)
+        let point1 = CGPoint(x: 100, y: 0)
+        let point2 = CGPoint(x: 140, y: 80)
+        let point3 = CGPoint(x: 100, y: 160)
+        let point4 = CGPoint(x: 0, y: 160)
+        let point5 = CGPoint(x: -40, y: 80)
+        let point6 = CGPoint(x: 0, y: 0)
+//        CGPathAddLines(path, [transform], [point0,point1,point2,point3,point4,point5,point6], 7)
         
         let hexagon = SKShapeNode(path: path)
-        hexagon.strokeColor = UIColor.blackColor()
-        hexagon.fillColor = UIColor.whiteColor()
+        hexagon.strokeColor = UIColor.black
+        hexagon.fillColor = UIColor.white
         hexagon.lineWidth = 5
         let defaultTexture = SKTexture(imageNamed: "btn0.jpg")
         hexagon.fillTexture = texture ?? defaultTexture
@@ -230,19 +230,19 @@ class BoxFactory {
     
     
     // 获取一个四边形边框
-    func getSquareShape(texture: SKTexture?) -> SKShapeNode{
-        let transform = CGAffineTransformMakeTranslation(0, -100)
-        let path = CGPathCreateMutable()
-        let point0 = CGPointMake(0, 0)
-        let point1 = CGPointMake(100, 100)
-        let point2 = CGPointMake(0, 200)
-        let point3 = CGPointMake(-100, 100)
-        let point4 = CGPointMake(0, 0)
-        CGPathAddLines(path, [transform], [point0,point1,point2,point3,point4], 5)
+    func getSquareShape(_ texture: SKTexture?) -> SKShapeNode{
+        let transform = CGAffineTransform(translationX: 0, y: -100)
+        let path = CGMutablePath()
+        let point0 = CGPoint(x: 0, y: 0)
+        let point1 = CGPoint(x: 100, y: 100)
+        let point2 = CGPoint(x: 0, y: 200)
+        let point3 = CGPoint(x: -100, y: 100)
+        let point4 = CGPoint(x: 0, y: 0)
+//        CGPathAddLines(path, [transform], [point0,point1,point2,point3,point4], 5)
         
         let hexagon = SKShapeNode(path: path)
-        hexagon.strokeColor = UIColor.blackColor()
-        hexagon.fillColor = UIColor.whiteColor()
+        hexagon.strokeColor = UIColor.black
+        hexagon.fillColor = UIColor.white
         hexagon.lineWidth = 5
         let defaultTexture = SKTexture(imageNamed: "btn0.jpg")
         hexagon.fillTexture = texture ?? defaultTexture
@@ -251,21 +251,21 @@ class BoxFactory {
     }
     
     // 获取消息框
-    func getMessageBox(xAnchorPoint: CGFloat, direction: CGFloat) -> SKSpriteNode{
-        let messageBox = SKSpriteNode(color: UIColor.lightGrayColor(), size: CGSizeMake(400, 250))
-        messageBox.anchorPoint = CGPointMake(xAnchorPoint, 40 / 250 + 1)
-        messageBox.position = CGPointMake(0, 0)
+    func getMessageBox(_ xAnchorPoint: CGFloat, direction: CGFloat) -> SKSpriteNode{
+        let messageBox = SKSpriteNode(color: UIColor.lightGray, size: CGSize(width: 400, height: 250))
+        messageBox.anchorPoint = CGPoint(x: xAnchorPoint, y: 40 / 250 + 1)
+        messageBox.position = CGPoint(x: 0, y: 0)
         messageBox.yScale = direction
         
-        let transform = CGAffineTransformMakeTranslation(0, -40)
-        let path = CGPathCreateMutable()
-        let point0 = CGPointMake(40, 0)
-        let point1 = CGPointMake(0, 40)
-        let point2 = CGPointMake(-40, 0)
-        CGPathAddLines(path, [transform], [point0,point1,point2], 3)
+        let transform = CGAffineTransform(translationX: 0, y: -40)
+        let path = CGMutablePath()
+        let point0 = CGPoint(x: 40, y: 0)
+        let point1 = CGPoint(x: 0, y: 40)
+        let point2 = CGPoint(x: -40, y: 0)
+//        CGPathAddLines(path, [transform], [point0,point1,point2], 3)
         let triangle = SKShapeNode(path: path)
-        triangle.strokeColor = UIColor.blackColor()
-        triangle.fillColor = UIColor.whiteColor()
+        triangle.strokeColor = UIColor.black
+        triangle.fillColor = UIColor.white
         triangle.lineWidth = 5
         
         messageBox.addChild(triangle)

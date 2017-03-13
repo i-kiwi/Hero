@@ -22,7 +22,7 @@ class Attack: SKScene {
     var currentClickButton: SKNode!
     
     
-    override func didMoveToView(view: SKView) {
+    override func didMove(to view: SKView) {
         toViewInit()
         
     }
@@ -42,33 +42,33 @@ class Attack: SKScene {
         self.view?.addGestureRecognizer(threeTap)
         
         
-        tap.requireGestureRecognizerToFail(doubleTap)
-        doubleTap.requireGestureRecognizerToFail(threeTap)
+        tap.require(toFail: doubleTap)
+        doubleTap.require(toFail: threeTap)
     }
     
     func toViewInit(){
         // init self scene
         self.size = SCENE_SIZE
         
-        self.anchorPoint = CGPointMake(0, 0)
-        self.backgroundColor = UIColor.whiteColor()
+        self.anchorPoint = CGPoint(x: 0, y: 0)
+        self.backgroundColor = UIColor.white
         
         // init background
         let boxBack = self.boxFactory.backBox
-        self.addChild(boxBack)
+        self.addChild(boxBack!)
         
         // init top/mid/btm box
         let topBox = boxFactory.topBox
         let midBox = boxFactory.midBox
         let containerBox = boxFactory.getModuleContainerBox()
-        midBox.addChild(containerBox)
+        midBox?.addChild(containerBox)
         containerBox.addChild(hero)
-        hero.position = CGPointMake(containerBox.frame.width / 2, containerBox.frame.height / 2)
+        hero.position = CGPoint(x: containerBox.frame.width / 2, y: containerBox.frame.height / 2)
         hero.stop()
         let btmBox = boxFactory.btmBox
-        self.addChild(topBox)
-        self.addChild(midBox)
-        self.addChild(btmBox)
+        self.addChild(topBox!)
+        self.addChild(midBox!)
+        self.addChild(btmBox!)
         
         initAttackPanel()
     }
@@ -76,15 +76,15 @@ class Attack: SKScene {
     // 初始化攻击面板
     func initAttackPanel(){
         // 背景面板
-        attackFactory.attackButton.position = CGPointMake(boxFactory.btmBox.frame.width / 2, boxFactory.btmBox.frame.height / 2)
-        attackFactory.upButton.position = CGPointMake(boxFactory.btmBox.frame.width / 2, 500)
-        attackFactory.downButton.position = CGPointMake(boxFactory.btmBox.frame.width / 2, 100)
-        attackFactory.leftButton.position = CGPointMake(335, boxFactory.btmBox.frame.height / 2)
-        attackFactory.rightButton.position = CGPointMake(745, boxFactory.btmBox.frame.height / 2)
-        attackFactory.pack1.position = CGPointMake(140, 450)
-        attackFactory.pack2.position = CGPointMake(140, 150)
-        attackFactory.gunSlide.position = CGPointMake(940, boxFactory.btmBox.frame.height / 2)
-        attackFactory.gunButton.position = CGPointMake(940, self.gunButtonRange.btm)
+        attackFactory.attackButton.position = CGPoint(x: boxFactory.btmBox.frame.width / 2, y: boxFactory.btmBox.frame.height / 2)
+        attackFactory.upButton.position = CGPoint(x: boxFactory.btmBox.frame.width / 2, y: 500)
+        attackFactory.downButton.position = CGPoint(x: boxFactory.btmBox.frame.width / 2, y: 100)
+        attackFactory.leftButton.position = CGPoint(x: 335, y: boxFactory.btmBox.frame.height / 2)
+        attackFactory.rightButton.position = CGPoint(x: 745, y: boxFactory.btmBox.frame.height / 2)
+        attackFactory.pack1.position = CGPoint(x: 140, y: 450)
+        attackFactory.pack2.position = CGPoint(x: 140, y: 150)
+        attackFactory.gunSlide.position = CGPoint(x: 940, y: boxFactory.btmBox.frame.height / 2)
+        attackFactory.gunButton.position = CGPoint(x: 940, y: self.gunButtonRange.btm)
         
         
         boxFactory.btmBox.addChild(attackFactory.attackButton)
@@ -112,7 +112,7 @@ class Attack: SKScene {
     }
     
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 
 //        if let touch = touches.first?.tapCount{
 //            switch touch {
@@ -132,7 +132,7 @@ class Attack: SKScene {
         
         
         
-        let node = self.nodeAtPoint((touches.first?.locationInNode(self.boxFactory.btmBox))!)
+        let node = self.atPoint((touches.first?.location(in: self.boxFactory.btmBox))!)
         // 如果当前点击的按钮不是上一次点击的按钮则重置
         if self.currentClickButton != node{
             self.currentClickButton = nil
@@ -149,9 +149,9 @@ class Attack: SKScene {
                 print("\(self.role.attackState)")
                 self.role.attackState += 1
                 // 未中断
-                NSObject.cancelPreviousPerformRequestsWithTarget(self, selector: #selector(single), object: nil)
+                NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(single), object: nil)
                 // 超时中断当前连续动作
-                self.performSelector(#selector(single), withObject: nil, afterDelay: TimeManager.attackSkillEndTime.rawValue)
+                self.perform(#selector(single), with: nil, afterDelay: TimeManager.attackSkillEndTime.rawValue)
             }else if node.name == attackButtonName.gun.rawValue{// 射击按钮
                 print("fire!")
             }else if node.name == attackButtonName.up.rawValue{// 上
@@ -160,7 +160,7 @@ class Attack: SKScene {
                 print("down!")
             }else if node.name == attackButtonName.left.rawValue{// 左
                 if self.currentClickButton != nil && nowClickTime - self.clickTime < TimeManager.doubleClickTime.rawValue{
-                    if let skill = self.role.skills.valueForKey(SkillName.afterTheJump.rawValue) as? Skill{
+                    if let skill = self.role.skills.value(forKey: SkillName.afterTheJump.rawValue) as? Skill{
                         if nowClickTime - skill.lastTime > skill.cd{
                             skill.lastTime = nowClickTime
                             print("double left!")
@@ -175,7 +175,7 @@ class Attack: SKScene {
                 }
             }else if node.name == attackButtonName.right.rawValue{// 右
                 if self.currentClickButton != nil && nowClickTime - self.clickTime < TimeManager.doubleClickTime.rawValue{
-                    if let skill = self.role.skills.valueForKey(SkillName.beforeTheJump.rawValue) as? Skill{
+                    if let skill = self.role.skills.value(forKey: SkillName.beforeTheJump.rawValue) as? Skill{
                         if nowClickTime - skill.lastTime > skill.cd{
                             skill.lastTime = nowClickTime
                             print("double right!")
@@ -192,7 +192,7 @@ class Attack: SKScene {
                 print("pack2!")
             }
             // 点击动画
-            node.runAction(attackFactory.attackBeganAction())
+            node.run(attackFactory.attackBeganAction())
             // 记录这次点击的按钮
             self.currentClickButton = node
         }
@@ -201,15 +201,15 @@ class Attack: SKScene {
     }
     
     
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 //        let node = self.nodeAtPoint((touches.first?.locationInNode(self.boxFactory.btmBox))!)
         
         if let _ = self.currentClickButton{
-            self.currentClickButton.runAction(attackFactory.attackEndedAction())
+            self.currentClickButton.run(attackFactory.attackEndedAction())
 //            // 重置当前点击的按钮为空
 //            self.currentClickButton = nil
         }

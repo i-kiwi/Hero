@@ -59,16 +59,16 @@ class State {
 //        let downR = CGPointMake(SCENE_SIZE.width * 0.66, MID_BOX_HEIGHT * 0.2)
         let margin: CGFloat = 200
         let yPosition: CGFloat = 300
-        let point1 = CGPointMake((SCENE_SIZE.width - margin) * 0.2 + margin / 2, yPosition)
-        let point2 = CGPointMake((SCENE_SIZE.width - margin) * 0.4 + margin / 2, yPosition - 100)
-        let point3 = CGPointMake((SCENE_SIZE.width - margin) * 0.6 + margin / 2, yPosition)
-        let point4 = CGPointMake((SCENE_SIZE.width - margin) * 0.8 + margin / 2, yPosition - 100)
+        let point1 = CGPoint(x: (SCENE_SIZE.width - margin) * 0.2 + margin / 2, y: yPosition)
+        let point2 = CGPoint(x: (SCENE_SIZE.width - margin) * 0.4 + margin / 2, y: yPosition - 100)
+        let point3 = CGPoint(x: (SCENE_SIZE.width - margin) * 0.6 + margin / 2, y: yPosition)
+        let point4 = CGPoint(x: (SCENE_SIZE.width - margin) * 0.8 + margin / 2, y: yPosition - 100)
         
         // 剑
         self.sword = SKSpriteNode()
         sword.zPosition = EQUIP_ZPOSITION
         sword.position = point1
-        let swordTexture = (self.role.wearingGoods.valueForKey(SWORD_EQUIP_NAME) as? Goods)?.ico
+        let swordTexture = (self.role.wearingGoods.value(forKey: SWORD_EQUIP_NAME) as? Goods)?.ico
         sword.addChild(boxFactory.getHexagonShape(swordTexture))
         self.stateBox.addChild(sword)
         
@@ -76,7 +76,7 @@ class State {
         self.gun = SKSpriteNode()
         gun.zPosition = EQUIP_ZPOSITION
         gun.position = point2
-        let gunTexture = (self.role.wearingGoods.valueForKey(GUN_EQUIP_NAME) as? Goods)?.ico
+        let gunTexture = (self.role.wearingGoods.value(forKey: GUN_EQUIP_NAME) as? Goods)?.ico
         gun.addChild(boxFactory.getHexagonShape(gunTexture))
         self.stateBox.addChild(gun)
         
@@ -84,14 +84,14 @@ class State {
         let temp = SKSpriteNode()
         temp.zPosition = EQUIP_ZPOSITION
         temp.position = point3
-        let tempTexture = (self.role.wearingGoods.valueForKey(SWORD_EQUIP_NAME) as? Goods)?.ico
+        let tempTexture = (self.role.wearingGoods.value(forKey: SWORD_EQUIP_NAME) as? Goods)?.ico
         temp.addChild(boxFactory.getHexagonShape(tempTexture))
         self.stateBox.addChild(temp)
         
         let temp2 = SKSpriteNode()
         temp2.zPosition = EQUIP_ZPOSITION
         temp2.position = point4
-        let temp2Texture = (self.role.wearingGoods.valueForKey(SWORD_EQUIP_NAME) as? Goods)?.ico
+        let temp2Texture = (self.role.wearingGoods.value(forKey: SWORD_EQUIP_NAME) as? Goods)?.ico
         temp2.addChild(boxFactory.getHexagonShape(temp2Texture))
         self.stateBox.addChild(temp2)
         

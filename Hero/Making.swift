@@ -59,7 +59,7 @@ class Making {
     
     func initBottomFrame(){
         self.tainer = self.getBottomFrameContentModel(self.role.entitledGoods)
-        tainer.position = CGPointMake(5, self.makingBtmFrame.frame.height)
+        tainer.position = CGPoint(x: 5, y: self.makingBtmFrame.frame.height)
         if let crop: SKCropNode? = self.boxFactory.crop{
             crop?.removeAllChildren()
             crop?.addChild(tainer)
@@ -67,7 +67,7 @@ class Making {
         self.listRange = (self.makingBtmFrame.frame.height, self.tainer.frame.height)
     }
     
-    func bottomFrameTurnZero(length: CGFloat){
+    func bottomFrameTurnZero(_ length: CGFloat){
         if self.listRange.btm < self.makingBtmFrame.frame.height{
             return
         }
@@ -76,54 +76,54 @@ class Making {
             if self.tainer.position.y < listRange.top{
                 // turn top
                 self.tainer.removeAllActions()
-                let action = SKAction.moveToY(listRange.top, duration: 0.1)
-                self.tainer.runAction(action)
+                let action = SKAction.moveTo(y: listRange.top, duration: 0.1)
+                self.tainer.run(action)
             }else if self.tainer.position.y > listRange.btm{
                 print("\(self.tainer.position.y)")
                 // turn bottom
                 self.tainer.removeAllActions()
-                let action = SKAction.moveToY(listRange.btm, duration: 0.1)
-                self.tainer.runAction(action)
+                let action = SKAction.moveTo(y: listRange.btm, duration: 0.1)
+                self.tainer.run(action)
             }else if abs(length) > 5 && self.tainer.position.y > listRange.top && self.tainer.position.y < listRange.btm {
                 var action: SKAction!
                 // 拉动可能会产生的距离
                 let distance = self.tainer.position.y + length * 10
-                let duration: NSTimeInterval = 0.5
+                let duration: TimeInterval = 0.5
                 if distance < self.listRange.top{
-                    action = SKAction.moveToY(self.listRange.top, duration: duration)
+                    action = SKAction.moveTo(y: self.listRange.top, duration: duration)
                 } else if distance > self.listRange.btm {
-                    action = SKAction.moveToY(self.listRange.btm, duration: duration)
+                    action = SKAction.moveTo(y: self.listRange.btm, duration: duration)
                 } else {
-                    action = SKAction.moveByX(0, y: length * 10, duration: duration)
+                    action = SKAction.moveBy(x: 0, y: length * 10, duration: duration)
                 }
                 
                 self.tainer.removeAllActions()
-                action.timingMode = SKActionTimingMode.EaseOut
-                self.tainer.runAction(action)
+                action.timingMode = SKActionTimingMode.easeOut
+                self.tainer.run(action)
             }
         }
     }
     
     // get bottom frame content model
-    func getBottomFrameContentModel(gs: [Goods]) -> SKShapeNode{
+    func getBottomFrameContentModel(_ gs: [Goods]) -> SKShapeNode{
         
         
-        let tainer = SKShapeNode(rect: CGRectMake(0, 0, CONTENT_MODEL_WIDTH, MAKING_CONTENT_MODEL_HEIGHT * CGFloat(gs.count)))
+        let tainer = SKShapeNode(rect: CGRect(x: 0, y: 0, width: CONTENT_MODEL_WIDTH, height: MAKING_CONTENT_MODEL_HEIGHT * CGFloat(gs.count)))
         tainer.zPosition = CONTENT_ZPOSITION
         var index: CGFloat = 0
         for goods in gs {
             let model = SKSpriteNode()
             model.name = MAKING_TAINER_NAME
-            model.anchorPoint = CGPointMake(0, 1)
-            model.size = CGSizeMake(CONTENT_MODEL_WIDTH, MAKING_CONTENT_MODEL_HEIGHT)
-            model.position = CGPointMake(CONTENT_MODEL_MARGIN, -MAKING_CONTENT_MODEL_HEIGHT * index)
+            model.anchorPoint = CGPoint(x: 0, y: 1)
+            model.size = CGSize(width: CONTENT_MODEL_WIDTH, height: MAKING_CONTENT_MODEL_HEIGHT)
+            model.position = CGPoint(x: CONTENT_MODEL_MARGIN, y: -MAKING_CONTENT_MODEL_HEIGHT * index)
             model.zPosition = CONTENT_ZPOSITION
             
             goods.addToListContent(model, index: Int(index))
             tainer.addChild(model)
             index += 1
         }
-        tainer.strokeColor = UIColor.clearColor()
+        tainer.strokeColor = UIColor.clear
         return tainer
     }
     

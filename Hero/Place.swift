@@ -20,13 +20,13 @@ class Place {
     var hasStar: Int = -1
     var detail: String!
     
-    func addToListContent(sprite: SKSpriteNode, index: Int){
+    func addToListContent(_ sprite: SKSpriteNode, index: Int){
         // index
         let indexLabel = SKLabelNode(fontNamed: FONT_FAMILY_BOLD_NAME)
-        indexLabel.fontColor = UIColor.whiteColor()
+        indexLabel.fontColor = UIColor.white
         indexLabel.text = "\(index + 1)"
         indexLabel.fontSize = 40
-        indexLabel.position = CGPointMake(20, -60)
+        indexLabel.position = CGPoint(x: 20, y: -60)
         sprite.addChild(indexLabel)
         
         // ico
@@ -37,17 +37,17 @@ class Place {
 //        sprite.addChild(icoNode)
         let icoNode = SKSpriteNode(texture: self.ico)
         icoNode.name = "\(PLACE_ICO_NAME)\(index)"
-        icoNode.position = CGPointMake(150, -140)
+        icoNode.position = CGPoint(x: 150, y: -140)
         sprite.addChild(icoNode)
         
         // bottom line
-        let btmLine = SKShapeNode(rect: CGRectMake(0, -MAP_CONTENT_MODEL_HEIGHT, CONTENT_MODEL_WIDTH, 1))
-        btmLine.strokeColor = UIColor.lightGrayColor()
+        let btmLine = SKShapeNode(rect: CGRect(x: 0, y: -MAP_CONTENT_MODEL_HEIGHT, width: CONTENT_MODEL_WIDTH, height: 1))
+        btmLine.strokeColor = UIColor.lightGray
         sprite.addChild(btmLine)
         if index == 0 {
             // top line
-            let topLine = SKShapeNode(rect: CGRectMake(0, 0, CONTENT_MODEL_WIDTH, 1))
-            topLine.strokeColor = UIColor.lightGrayColor()
+            let topLine = SKShapeNode(rect: CGRect(x: 0, y: 0, width: CONTENT_MODEL_WIDTH, height: 1))
+            topLine.strokeColor = UIColor.lightGray
             sprite.addChild(topLine)
         }
     }

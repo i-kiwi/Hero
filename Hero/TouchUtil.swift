@@ -30,8 +30,8 @@ class TouchUtil {
         
         // Demo
         //left move
-        let swi = UISwipeGestureRecognizer(target: self, action: Selector(self.left()))
-        swi.direction = UISwipeGestureRecognizerDirection.Left
+//        let swi = UISwipeGestureRecognizer(target: self, action: Selector(self.left()))
+//        swi.direction = UISwipeGestureRecognizerDirection.left
 //        self.view?.addGestureRecognizer(swi)
         
         // cilck

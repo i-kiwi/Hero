@@ -420,6 +420,7 @@
 					577F69E61CC76AEF0075FE23 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = PTHBS2HB67;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
 								enabled = 0;
@@ -663,6 +664,7 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kiwi.Hero;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -681,6 +683,7 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kiwi.Hero;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

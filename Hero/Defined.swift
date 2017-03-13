@@ -13,7 +13,7 @@ import SpriteKit
 /**
  * Size
  */
-let SCENE_SIZE: CGSize = CGSizeMake(1080, 1920)
+let SCENE_SIZE: CGSize = CGSize(width: 1080, height: 1920)
 
 
 
@@ -106,19 +106,19 @@ let SLOW_RUN_SPEED: CGFloat = 0.5
 /**
  * Color
  */
-let BOX_LINE_COLOR = UIColor.blackColor()
-let BOX_LINE_FILL_COLOR = UIColor.whiteColor()
+let BOX_LINE_COLOR = UIColor.black
+let BOX_LINE_FILL_COLOR = UIColor.white
 
-let BUTTON_LINE_COLOR = UIColor.blackColor()
-let BUTTON_FILL_COLOR = UIColor.whiteColor()
+let BUTTON_LINE_COLOR = UIColor.black
+let BUTTON_FILL_COLOR = UIColor.white
 
-let CONTAINER_BOX_LINE_COLOR = UIColor.blackColor()
-let CONTAINER_BOX_FILL_COLOR = UIColor.whiteColor()
+let CONTAINER_BOX_LINE_COLOR = UIColor.black
+let CONTAINER_BOX_FILL_COLOR = UIColor.white
 
-let FRAME_LINE_COLOR = UIColor.blackColor()
-let FRAME_FILL_COLOR = UIColor.whiteColor()
+let FRAME_LINE_COLOR = UIColor.black
+let FRAME_FILL_COLOR = UIColor.white
 
-let LIST_ICO_NODE_COLOR = UIColor.grayColor()
+let LIST_ICO_NODE_COLOR = UIColor.gray
 
 
 

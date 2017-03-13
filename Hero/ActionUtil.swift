@@ -11,6 +11,6 @@ import SpriteKit
 extension SKAction {
 
     public class func shake() -> SKAction{
-        return SKAction.repeatActionForever(SKAction.sequence([SKAction.scaleTo(1.1, duration: 0.1),SKAction.scaleTo(1, duration: 0.1)]))
+        return SKAction.repeatForever(SKAction.sequence([SKAction.scale(to: 1.1, duration: 0.1),SKAction.scale(to: 1, duration: 0.1)]))
     }
 }

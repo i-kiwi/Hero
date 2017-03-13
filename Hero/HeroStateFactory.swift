@@ -24,10 +24,10 @@ class HeroStateFactory: SKSpriteNode {
     init(){
         self.single = "the single model"
         let texture = SKTexture(imageNamed: "body2")
-        let size = CGSizeMake(texture.size().width, texture.size().height)
-        super.init(texture: texture, color: UIColor.whiteColor(), size: size)
+        let size = CGSize(width: texture.size().width, height: texture.size().height)
+        super.init(texture: texture, color: UIColor.white, size: size)
         
-        self.anchorPoint = CGPointMake(0.5, 0.5)
+        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.zPosition = BODY_ZPOSITION
         
     }
